@@ -1,0 +1,105 @@
+/* Alert */
+
+.alert {
+  width: 100%;
+  display: block;
+  padding: 1rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+/* alert quote */
+.alert-quote {
+  border-left: solid 5px currentColor;
+}
+
+/* simple alerts */
+.alert-success {
+  color: var(--green-700);
+  background-color: var(--green-100);
+}
+.alert-error {
+  color: var(--red-700);
+  background-color: var(--red-100);
+}
+.alert-warning {
+  color: var(--yellow-700);
+  background-color: var(--yellow-100);
+}
+.alert-info {
+  color: var(--blue-700);
+  background-color: var(--blue-100);
+}
+
+/* alert with description */
+
+/* outlined alerts */
+.alert-outline-success {
+  color: var(--green-700);
+  background-color: var(--green-100);
+  border: solid 1px currentColor;
+}
+.alert-outline-error {
+  color: var(--red-700);
+  background-color: var(--red-100);
+  border: solid 1px currentColor;
+}
+.alert-outline-warning {
+  color: var(--yellow-700);
+  background-color: var(--yellow-100);
+  border: solid 1px currentColor;
+}
+.alert-outline-info {
+  color: var(--blue-700);
+  background-color: var(--blue-100);
+  border: solid 1px currentColor;
+}
+
+/* alert filled */
+.alert-filled-success {
+  color: var(--white);
+  background-color: var(--green-500);
+  border: solid 1px currentColor;
+}
+.alert-filled-error {
+  color: var(--white);
+  background-color: var(--red-500);
+  border: solid 1px currentColor;
+}
+.alert-filled-warning {
+  color: var(--white);
+  background-color: var(--yellow-400);
+  border: solid 1px currentColor;
+}
+.alert-filled-info {
+  color: var(--white);
+  background-color: var(--blue-500);
+  border: solid 1px currentColor;
+}
+
+/* alert with action */
+.alert-action {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-action-icon {
+  background: inherit;
+  border-radius: 50%;
+  align-self: flex-end;
+  transition: 0.3s ease;
+}
+.alert-action-icon-success:hover {
+  background-color: var(--green-200);
+}
+.alert-action-icon-error:hover {
+  background-color: var(--red-200);
+}
+.alert-action-icon-warning:hover {
+  background-color: var(--yellow-200);
+}
+.alert-action-icon-info:hover {
+  background-color: var(--blue-200);
+}

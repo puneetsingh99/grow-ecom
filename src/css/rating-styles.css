@@ -1,0 +1,4 @@
+/* rating */
+.rating:hover {
+  color: var(--yellow-400);
+}

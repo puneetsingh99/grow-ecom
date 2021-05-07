@@ -1,0 +1,17 @@
+.product-list--wishlist {
+  width: 95%;
+  margin: 1rem auto 2rem auto;
+}
+
+.wishlist-indicator {
+  width: 95%;
+  margin: 2rem auto;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .wishlist-indicator {
+    margin: 1rem;
+    font-weight: 500;
+  }
+}

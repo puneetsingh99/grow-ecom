@@ -1,0 +1,62 @@
+/* Avatars */
+/* image avatars of different  sizes */
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+.avatar-sm {
+  width: 2rem;
+  height: 2rem;
+}
+.avatar-lg {
+  width: 4rem;
+  height: 4rem;
+}
+.avatar-xl {
+  width: 5rem;
+  height: 5rem;
+}
+
+/* Icon avatars */
+.icon-avatar {
+  width: 3rem;
+  height: 3rem;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  color: var(--gray-50);
+  background-color: var(--gray-700);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-avatar-sm {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.5rem;
+}
+
+.icon-avatar-lg {
+  width: 4rem;
+  height: 4rem;
+  font-size: 1rem;
+}
+
+/* avatar with badge */
+.avatar-badge {
+  position: relative;
+}
+.badge {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: var(--green-400);
+  border: solid 2px var(--white);
+  top: 60%;
+  right: -4px;
+}
+.badge-red {
+  background-color: var(--red-400);
+}

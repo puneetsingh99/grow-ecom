@@ -1,0 +1,123 @@
+.product-card {
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card__img-container {
+  position: relative;
+  min-height: 300px;
+  padding: 2rem;
+  background-color: var(--light-gray);
+  margin-bottom: 0.5rem;
+}
+
+.wishlist-product-card__img-container {
+  max-height: 300px;
+}
+
+.product-card__img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--dark-gray);
+  margin-bottom: 0.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.product-creator {
+  font-size: 0.9rem;
+  color: var(--medium-gray);
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.add-to-wishlist_container {
+  font-size: 1rem;
+  color: var(--medium-gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.add-to-wishlist {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.add-to-wishlist-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.add-to-wishlist:hover {
+  cursor: pointer;
+}
+
+.rating-container {
+  font-size: 0.8rem;
+  padding: 0.125rem 0.4rem;
+  border-radius: 3px;
+  background-color: var(--light-gray);
+}
+
+.btn-add-to-cart {
+  padding: 0.5em 0.75em;
+  font-size: 1rem;
+  color: var(--white);
+  background-color: var(--dark-gray);
+  border: solid 1px var(--dark-gray);
+  width: 100%;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.btn-add-to-cart:focus {
+  box-shadow: 0px 0px 0px 3px var(--gray-300);
+}
+
+.product-dismiss {
+  background-color: var(--white);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .product-card__img-container {
+    padding: 1rem;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .product-card__img-container {
+    padding: 1rem;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 400px) {
+  .product-card {
+    min-height: 300px;
+  }
+  .product-card__img-container {
+    padding: 0.75rem;
+    min-height: 280px;
+  }
+}

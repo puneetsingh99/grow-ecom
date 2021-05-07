@@ -1,0 +1,8 @@
+/* image */
+.responsive-img {
+  max-width: 100%;
+}
+.responsive-img-round {
+  max-width: 100%;
+  border-radius: 50%;
+}

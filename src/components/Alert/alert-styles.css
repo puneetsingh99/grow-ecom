@@ -1,0 +1,39 @@
+.alert--float {
+  position: fixed;
+  bottom: 10%;
+  right: 2rem;
+  width: 40%;
+  z-index: 100;
+}
+
+.alert-success,
+.alert-info,
+.alert-warning,
+.alert-error {
+  background-color: var(--dark-gray);
+  border-left: none;
+}
+
+.alert-success {
+  color: var(--green-500);
+}
+
+.alert-info {
+  color: var(--blue-500);
+}
+
+.alert-warning {
+  color: var(--yellow-500);
+}
+
+.alert-error {
+  color: var(--red-500);
+}
+
+@media (max-width: 640px) {
+  .alert--float {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
