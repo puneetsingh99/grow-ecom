@@ -12,8 +12,6 @@ export const LocationList = () => {
     showCountryList
   } = useLocalization();
 
-  console.log({ showCountryList });
-  console.log("locationlist " + location);
   return (
     <ul className={`location-list ${showCountryList && "show"}`}>
       {currencies.map((currency) => {

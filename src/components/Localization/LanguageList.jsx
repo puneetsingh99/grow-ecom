@@ -8,8 +8,6 @@ export const LanguageList = () => {
     localizationDispatch,
     showLanguageList
   } = useLocalization();
-  console.log({ showLanguageList });
-  console.log({ currLanguage });
 
   return (
     <ul className={`language-list ${showLanguageList && "show"}`}>

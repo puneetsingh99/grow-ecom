@@ -39,8 +39,6 @@ export const Navbar = () => {
   const wishlistCount = wishlistItemIds.length;
   const cartCount = cartItemIds.length;
 
-  console.log({ wishlistCount }, typeof wishlistCount);
-  console.log({ cartCount }, typeof cartCount);
 
   return (
     <nav className="nav">

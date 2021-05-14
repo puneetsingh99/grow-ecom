@@ -4,6 +4,6 @@ export { useGetUser } from "./useGetUser";
 export { useLocalization } from "./useLocalization";
 export { useHamburger } from "./useHamburger";
 export { useCheckBox } from "./useCheckBox";
-export { useGetProductDetail } from "./useGetProductDetail";
-
+export { useGetProduct } from "./useGetProduct";
 export { useCurrencyConverter } from "./useCurrencyConverter";
+export { usePrice } from "./usePrice";

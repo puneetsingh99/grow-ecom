@@ -52,8 +52,6 @@ export const ECommerceProvider = ({ children }) => {
     userDispatch
   } = useGetUser();
 
-  console.log("coming from ecom context: cartItemIds ", cartItemIds);
-  console.log("coming from ecom context: wishlistItemIds ", wishlistItemIds);
   return (
     <ECommerceContext.Provider
       value={{

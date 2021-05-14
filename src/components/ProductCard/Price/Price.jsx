@@ -1,30 +1,22 @@
-import "./Price.css";
+import "./price-styles.css";
+import {useCurrencyConverter, usePrice} from "../../../customHooks"
 
 export const Price = ({
   mrp,
   offerPercentage,
-  currencySymbol,
-  selectedCurrencyRate
+ 
 }) => {
-  const discountPrice =
-    mrp * (1 - offerPercentage / 100) * selectedCurrencyRate;
-  const roundedDiscountPrice = Math.round(discountPrice * 100) / 100;
-  const finalPrice = `${currencySymbol} ${roundedDiscountPrice}`;
-  const roundedOriginalPrice =
-    Math.round(mrp * selectedCurrencyRate * 100) / 100;
+  const {finalPrice, originalPrice} = usePrice(mrp, offerPercentage);
+  const {currencySymbol} = useCurrencyConverter();
+
   return (
     <p className={`product-price`}>
       {finalPrice}
       <span className={`product-price-og`}>
         {`${
-          offerPercentage > 0 ? `${currencySymbol} ${roundedOriginalPrice}` : ""
+          offerPercentage > 0 ? `${currencySymbol} ${originalPrice}` : ""
         }`}
       </span>
-      {/* remove inline styling from the final version
-       */}
-      {/* <span style={{ color: "red", marginLeft: "0.5rem" }}>
-        {offerPercentage > 0 ? `(${offerPercentage}% off)` : ""}
-      </span> */}
     </p>
   );
 };

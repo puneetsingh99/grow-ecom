@@ -22,11 +22,11 @@ export default function App() {
         <Route path="/cart" end element={<Cart />} />
         <Route path="/login" end element={<Login />} />
         <Route path="/signup" end element={<Signup />} />
-        {/* <Route
+        <Route
           path="products/product/:productId"
           end
           element={<ProductDetail />}
-        /> */}
+        />
       </Routes>
     </div>
   );

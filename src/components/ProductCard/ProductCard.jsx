@@ -33,7 +33,6 @@ export const ProductCard = ({
     level
   } = product;
 
-  console.log("productType: ", { productType });
 
   return (
     <article className={`product-card`}>
@@ -100,8 +99,6 @@ export const ProductCard = ({
         <Price
           mrp={mrp}
           offerPercentage={offerPercentage}
-          currencySymbol={currencySymbol}
-          selectedCurrencyRate={selectedCurrencyRate}
         />
         <button
           className="btn-add-to-cart"

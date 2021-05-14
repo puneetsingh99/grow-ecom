@@ -21,3 +21,4 @@ export { wishlistHandler } from "./wishlistHandler";
 export { cartHandler } from "./cartHandler";
 export { updateQty } from "./updateQty";
 export { roundToTwoDigits } from "./roundToTwoDigits";
+export { getProduct } from "./getProduct";

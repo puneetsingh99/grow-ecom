@@ -49,7 +49,7 @@ export const CartProductCard = ({
             alt={imageAltText(title, author)}
             className={`cart-product-card__img`}
           />
-        </div>
+        </div> 
         <div className={`cart-product-card__details`}>
           <h1 className={`product-title--cart`}>{title}</h1>
           <p className={`product-creator product-creator--cart mb-4`}>
@@ -130,7 +130,6 @@ export const CartProductCard = ({
             }
           >
             Move to wishlist
-            {/* {translate("Move to Wishlist", language)} */}
           </button>
         </div>
       </div>

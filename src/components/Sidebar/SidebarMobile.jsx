@@ -15,7 +15,6 @@ export const SidebarMobile = () => {
   const [showFilterList, setShowFilterList] = useState(false);
   const [showSortbyList, setShowSortbyList] = useState(false);
   const { showHamburgerMenu } = useHamburger();
-  console.log({ showHamburgerMenu });
   const { eCommerceState, eCommerceDispatch } = useECommerce();
   const { language } = useLocalization();
 

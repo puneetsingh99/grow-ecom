@@ -39,4 +39,6 @@ export { HomeSlider } from "./Home/HomeSlider";
 export { Banner } from "./Home/Banner";
 export { Login } from "./Login/Login";
 export { Signup } from "./Login/Signup";
+export { ReviewList } from "./Review/ReviewList";
+export { Review } from "./Review/Review";
 export { ProductDetail } from "./ProductDetail/ProductDetail";

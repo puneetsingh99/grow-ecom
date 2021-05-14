@@ -23,7 +23,6 @@ export const Cart = () => {
   const { language } = useLocalization();
   const {
     cart,
-    wishlist,
     cartItemIds,
     wishlistItemIds,
     user,

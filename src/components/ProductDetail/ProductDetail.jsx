@@ -1,56 +1,110 @@
-import { Navbar } from "../";
-import { imageAltText, authorName, Price } from "../";
-import { useECommerce, useLocalization } from "../../customHooks";
-import {
-  translate,
-  wishlistHandler,
-  cartHandler,
-  getFilteredData
-} from "../../functions";
-import { DismissSvg, DropDownSvg } from "../../assets";
+import { Navbar, Price, ReviewList } from "../";
+import { imageAltText, authorName } from "../";
+import { StarSvg } from "../../assets";
+import { useECommerce, useGetProduct } from "../../customHooks";
 import "../Cart/cart-styles.css";
-import { QuantitySelector } from "../Cart/QuantitySelector";
-import { QuantitySelectorModal } from "../Cart/QuantitySelectorModal";
-import { useEffect, useState } from "react";
+import "./product-detail-styles.css";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useGetProductDetail } from "../../customHooks/useGetProductDetail";
+import { Loader } from "../Loader/Loader";
 
 export const ProductDetail = () => {
   const { productId } = useParams();
-  const { filteredData } = useECommerce();
-  const product = filteredData.find((product) => product._id === productId);
+  const [product, setProduct] = useState({});
+  useGetProduct(productId, setProduct);
 
-  const { image, title, author } = product;
+  const {
+    image,
+    author,
+    title,
+    rating,
+    price: mrp,
+    offerPercentage,
+    description,
+    reviews
+  } = product;
 
-  console.log({ author });
-
+  console.log(reviews);
   return (
     <main className={`product-description`}>
       <Navbar />
-      <article className={`cart-product-card`}>
-        {/* img and details container */}
-        <div className={`cart-product-card__info`}>
-          <div className={`cart-product-card__img-container`}>
-            <img
-              src={image}
-              alt={imageAltText(title, author)}
-              className={`cart-product-card__img`}
-            />
-          </div>
-          <div className={`cart-product-card__details`}>
-            <h1 className={`product-title--cart`}>{title}</h1>
-            <p className={`product-creator product-creator--cart mb-4`}>
-              {authorName(author)}
-            </p>
-          </div>
-        </div>
-      </article>
+      {Object.keys(product).length === 0 && <Loader />}
+      {Object.keys(product).length > 0 && (
+        <main className={`product-detail-page`}>
+          <article className={`product-detail-card`}>
+            <div className={`product__info`}>
+              <div className={`product__img__container-mobile`}>
+                <div className={`product__img-container`}>
+                  <img
+                    src={image}
+                    alt={imageAltText(title, author)}
+                    className={`product__img`}
+                  />
+                </div>
+              </div>
+              <div className={`product__details`}>
+                <h1 className={`product__details-title`}>{title}</h1>
+                <p className={`product__details-creator`}>
+                  {authorName(author)}
+                </p>
+                <div className={`flex product-price`}>
+                  <Price mrp={mrp} offerPercentage={offerPercentage} />
+                  <p className={`ml-2 text-red-400 font-medium`}>
+                    {`${
+                      offerPercentage !== 0 ? `${offerPercentage}% off` : ""
+                    }`}
+                  </p>
+                </div>
+                <div className="flex justify-between items-center w-8 mb-4 rating-container">
+                  <span className="mr-1 flex justify-between items-center font-bold text-gray-800">
+                    {rating}
+                  </span>
+                  <span className="text-yellow-400 self-center">
+                    <StarSvg />
+                  </span>
+                </div>
+                <div className={`mb-8 product__details-btn-container`}>
+                  <button
+                    className="btn-add-to-cart product__details-btn-add-to-wishlist"
+                    onClick={() =>
+                      wishlistHandler(
+                        "add",
+                        userId,
+                        product._id,
+                        setAlert,
+                        userDispatch,
+                        inWishlist
+                      )
+                    }
+                  >
+                    Add to Wishlist
+                  </button>
+
+                  <button
+                    className="btn-add-to-cart product__details-btn-add-to-cart"
+                    onClick={() =>
+                      cartHandler(
+                        "add",
+                        userId,
+                        product._id,
+                        setAlert,
+                        userDispatch,
+                        inCart
+                      )
+                    }
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+                <div className={`product-description-container`}>
+                  <h2>Description</h2>
+                  <p className={`product-description`}>{description}</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </main>
+      )}
     </main>
   );
 };
-
-{
-  /* // Upon initial load get the wishlist and cart of the user.
-// then using that  id match the product's id. if it's present in the cart then set
-// in cart flag and similarly for wishlist flag */
-}
