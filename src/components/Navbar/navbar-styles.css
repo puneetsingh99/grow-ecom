@@ -99,7 +99,8 @@
 }
 
 .select-country,
-.select-language {
+.select-language,
+.account-menu {
   position: relative;
   font-size: 1.75rem;
   display: flex;
@@ -129,6 +130,17 @@
 .hamburger-menu {
   display: none;
   margin-right: 1rem;
+}
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 /* media queries */

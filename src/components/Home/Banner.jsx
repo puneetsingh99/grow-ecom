@@ -7,7 +7,6 @@ export const Banner = ({
   id
 }) => {
   return (
-    <li>
       <article className={`banner ${index === id && "active-banner"}`}>
         <div className={`banner-img-container`}>
           <img src={img} alt={`banner-img`} className={`banner-img`} />
@@ -18,6 +17,5 @@ export const Banner = ({
           <p className={`shop-now`}>{cta}</p>
         </div>
       </article>
-    </li>
   );
 };

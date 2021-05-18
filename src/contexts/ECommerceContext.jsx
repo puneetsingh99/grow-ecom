@@ -1,6 +1,7 @@
 import { createContext, useReducer } from "react";
 import { eCommerceReducer, getFilteredData, getSortedData } from "../functions";
 import { useGetProducts, useGetUser } from "../customHooks";
+import { useAuth } from "./AuthContext";
 
 export const ECommerceContext = createContext();
 
@@ -14,10 +15,11 @@ export const ECommerceProvider = ({ children }) => {
     fastDeliveryOnly: false,
     inStockOnly: true,
     wishList: [],
-    cart: []
+    cart: [],
   });
 
   const { allProducts, loading, errorMessage } = useGetProducts();
+  const { isUserLoggedIn, loggedInUser } = useAuth();
 
   const {
     levels,
@@ -26,7 +28,7 @@ export const ECommerceProvider = ({ children }) => {
     fastDeliveryOnly,
     inStockOnly,
     sortBy,
-    search
+    search,
   } = eCommerceState;
 
   const sortedData = getSortedData(allProducts, sortBy);
@@ -49,8 +51,8 @@ export const ECommerceProvider = ({ children }) => {
     wishlist,
     cartItemIds,
     wishlistItemIds,
-    userDispatch
-  } = useGetUser();
+    userDispatch,
+  } = useGetUser(isUserLoggedIn, loggedInUser);
 
   return (
     <ECommerceContext.Provider
@@ -67,7 +69,7 @@ export const ECommerceProvider = ({ children }) => {
         wishlist,
         cartItemIds,
         wishlistItemIds,
-        userDispatch
+        userDispatch,
       }}
     >
       {children}

@@ -42,3 +42,5 @@ export { Signup } from "./Login/Signup";
 export { ReviewList } from "./Review/ReviewList";
 export { Review } from "./Review/Review";
 export { ProductDetail } from "./ProductDetail/ProductDetail";
+export { PrivateRoute } from "./PrivateRoute/PrivateRoute";
+export { AccountDropdown } from "./Account/AccountDropdown";

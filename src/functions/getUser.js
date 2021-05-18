@@ -1,7 +1,13 @@
 import axios from "axios";
 
-export const getUser = async (dispatch) => {
-  const userId = `6086fa0d0dfc55009dda056f`;
+export const getUser = async (dispatch, userId) => {
+  const isUserLoggedIn = localStorage.getItem("isUserLoggedIn");
+  console.log("userId being sent to getUser");
+  console.log({ userId });
+  if (!isUserLoggedIn) {
+    return;
+  }
+
   try {
     const { data } = await axios.get(
       `https://e-commerce-backend.puneetsingh2.repl.co/users/${userId}`
@@ -16,7 +22,7 @@ export const getUser = async (dispatch) => {
 
     dispatch({
       type: "FETCH_USER",
-      payload: newPayload
+      payload: newPayload,
     });
   } catch (error) {
     dispatch({ type: "ERROR", payload: error });

@@ -56,6 +56,7 @@ export const HomeSlider = () => {
           {banners.map((banner, bannerIndex) => {
             return (
               <p
+                key={banner.id}
                 className={`dot ${bannerIndex === index && `highlight-dot`}`}
                 onClick={() => setIndex(() => bannerIndex)}
               ></p>

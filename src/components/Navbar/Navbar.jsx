@@ -8,7 +8,7 @@ import {
   CartSvg,
   LanguageSvg,
   SearchSvg,
-  HamburgerSvg
+  HamburgerSvg,
 } from "../../assets";
 
 import {
@@ -17,7 +17,8 @@ import {
   LocationList,
   LanguageList,
   SearchbarMobile,
-  HamburgerMenu
+  HamburgerMenu,
+  AccountDropdown,
 } from "../";
 import { useLocalization, useHamburger, useECommerce } from "../../customHooks";
 
@@ -26,19 +27,16 @@ import { useState } from "react";
 // write every classname in template string instead  of string iteral
 
 export const Navbar = () => {
-  const {
-    location,
-    localizationDispatch,
-    translatedStrings,
-    showCountryList
-  } = useLocalization();
+  const { location, localizationDispatch, translatedStrings, showCountryList } =
+    useLocalization();
   const [showSearchMobile, setShowSearchMobile] = useState(false);
   const { showHamburgerMenu, setShowHamburgerMenu } = useHamburger();
+  const [showAccountMenu, setShowAccountMenu] = useState(false);
+
   const { cartItemIds, wishlistItemIds } = useECommerce();
 
   const wishlistCount = wishlistItemIds.length;
   const cartCount = cartItemIds.length;
-
 
   return (
     <nav className="nav">
@@ -122,7 +120,15 @@ export const Navbar = () => {
           <SearchSvg />
         </span>
         <div className={`account-icon`}>
-          <AccountSvg />
+          <div
+            className={`account`}
+            onClick={() => setShowAccountMenu((currFlag) => !currFlag)}
+          >
+            <AccountSvg />
+          </div>
+          <div className="account-menu">
+            <AccountDropdown showAccountMenu={showAccountMenu} />
+          </div>
         </div>
 
         <Link to="/wishlist" className={`text-link`}>

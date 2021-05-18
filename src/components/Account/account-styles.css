@@ -1,0 +1,33 @@
+.account-dropdown {
+  position: absolute;
+  top: 32px;
+  right: 0px;
+  opacity: 0;
+  pointer-events: none;
+  background-color: var(--white);
+  border: solid 1px var(--light-gray);
+  transition: 0.3s ease;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.login-logout-btn {
+  background-color: var(--white);
+  color: var(--dark-gray);
+  border: solid 1px var(--dark-gray);
+}
+
+.login-logout-btn:hover {
+  background-color: var(--light-gray);
+}
+
+@media (max-width: 640px) {
+  .account-dropdown {
+    top: 23px;
+  }
+}

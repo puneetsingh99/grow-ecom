@@ -6,7 +6,7 @@ export const LanguageList = () => {
   const {
     language: currLanguage,
     localizationDispatch,
-    showLanguageList
+    showLanguageList,
   } = useLocalization();
 
   return (

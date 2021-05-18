@@ -409,10 +409,11 @@
 }
 
 .empty-page-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 1rem;
   color: var(--dark-gray);
   text-transform: uppercase;
+  
 }
 .empty-page-msg {
   font-size: 1.25rem;
@@ -424,9 +425,9 @@
 
 .empty-page-cta {
   text-transform: uppercase;
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--medium-gray);
-  padding: 1rem 1.5rem;
+  padding: 0.5rem;
   border: solid 1px currentColor;
   width: max-content;
   margin: auto;

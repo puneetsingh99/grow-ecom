@@ -1,5 +1,17 @@
+.logo-icon {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--logo);
+  margin-right: 0.5rem;
+}
+.logo-name {
+  font-size: 1rem;
+}
+
 .auth-form-container {
-  height: 100vh;
+  height: 80vh;
   display: grid;
   place-items: center;
 }
@@ -10,7 +22,8 @@
   margin: 0rem auto 2rem auto;
   justify-content: center;
   align-items: center;
-  width: 400px;
+  min-height: 325px;
+  width: 350px;
   border-radius: 5px;
   padding: 2rem;
   border: solid 1px var(--light-gray);
@@ -32,23 +45,21 @@
 }
 
 .text-input {
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 550;
   width: 100%;
   color: var(--medium-gray);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border: solid 1px var(--light-gray);
 }
 
 .btn {
   width: 100%;
   font-size: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background-color: var(--dark-gray);
   color: var(--white);
-  padding: 1rem 1.5rem;
+  padding: 0.5rem;
   font-weight: 600;
   border: none;
   outline: transparent;
@@ -61,7 +72,7 @@
 }
 
 .btn:focus {
-  box-shadow: 0px 0px 0px 3px var(--medium-gray);
+  box-shadow: 0px 0px 0px 3px var(--light-gray);
 }
 
 .signup-link {

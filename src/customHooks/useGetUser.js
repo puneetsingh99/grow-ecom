@@ -1,20 +1,25 @@
 import { useEffect, useReducer } from "react";
+import { useAuth } from "../contexts";
 import { getUserReducer, getUser } from "../functions";
 
-export const useGetUser = () => {
+export const useGetUser = (isUserLoggedIn, loggedInUser) => {
   const [
     { user, errorMessage, cart, wishlist, wishlistItemIds, cartItemIds },
-    dispatch
+    dispatch,
   ] = useReducer(getUserReducer, {
     user: {},
     cart: [],
     wishlist: [],
     cartItemIds: [],
     wishlistItemIds: [],
-    errorMessage: ""
+    errorMessage: "",
   });
 
-  useEffect(() => getUser(dispatch), []);
+  useEffect(() => {
+    if (loggedInUser) {
+      getUser(dispatch, loggedInUser);
+    }
+  }, [loggedInUser]);
 
   return {
     user,
@@ -23,7 +28,7 @@ export const useGetUser = () => {
     wishlist,
     cartItemIds,
     wishlistItemIds,
-    userDispatch: dispatch
+    userDispatch: dispatch,
   };
 };
 // 6086fa0d0dfc55009dda056f

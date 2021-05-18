@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import {
   ECommerceProvider,
   LocalizationProvider,
-  HamburgerProvider
+  HamburgerProvider,
+  AuthProvider,
 } from "./contexts";
 import App from "./App";
 import { setupMockServer } from "./api/mock.server";
@@ -14,15 +15,17 @@ import { BrowserRouter as Router } from "react-router-dom";
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
-    <ECommerceProvider>
-      <LocalizationProvider>
-        <Router>
-          <HamburgerProvider>
-            <App />
-          </HamburgerProvider>
-        </Router>
-      </LocalizationProvider>
-    </ECommerceProvider>
+    <Router>
+      <AuthProvider>
+        <ECommerceProvider>
+          <LocalizationProvider>
+            <HamburgerProvider>
+              <App />
+            </HamburgerProvider>
+          </LocalizationProvider>
+        </ECommerceProvider>
+      </AuthProvider>
+    </Router>
   </StrictMode>,
   rootElement
 );
