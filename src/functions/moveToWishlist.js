@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiMoveToWishlist } from "../api";
 
 export const moveToWishlist = async (
   userId,
@@ -9,8 +10,7 @@ export const moveToWishlist = async (
   try {
     setAlert({ show: true, type: "info", message: "Moving... 😃" });
 
-    const url = `https://e-commerce-backend.puneetsingh2.repl.co/users/${userId}/movetowishlist/${productId}`;
-    const { data } = await axios.post(url);
+    const { data } = await axios.post(apiMoveToWishlist(userId, productId));
 
     if (data.success) {
       const updatedCart = data.updatedWishlist.cart;
@@ -26,13 +26,13 @@ export const moveToWishlist = async (
         wishlist: updatedWishlist,
         cart: updatedCart,
         cartItemIds,
-        wishlistItemIds
+        wishlistItemIds,
       };
 
       setAlert({
         show: true,
         type: "success",
-        message: "Moved to Wishlist! 🥳"
+        message: "Moved to Wishlist! 🥳",
       });
 
       userDispatch({ type: "MOVE_TO_CART", payload: newPayload });
@@ -40,7 +40,7 @@ export const moveToWishlist = async (
       setAlert({
         show: true,
         type: "warning",
-        message: `${data.message} 😅`
+        message: `${data.message} 😅`,
       });
     }
     return data;
@@ -48,7 +48,7 @@ export const moveToWishlist = async (
     setAlert({
       show: true,
       type: "error",
-      message: `${error.message} 😟`
+      message: `${error.message} 😟`,
     });
   }
 };

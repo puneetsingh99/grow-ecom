@@ -1,17 +1,9 @@
 import axios from "axios";
+import { apiGetUser } from "../api";
 
 export const getUser = async (dispatch, userId) => {
-  const isUserLoggedIn = localStorage.getItem("isUserLoggedIn");
-  console.log("userId being sent to getUser");
-  console.log({ userId });
-  if (!isUserLoggedIn) {
-    return;
-  }
-
   try {
-    const { data } = await axios.get(
-      `https://e-commerce-backend.puneetsingh2.repl.co/users/${userId}`
-    );
+    const { data } = await axios.get(apiGetUser(userId));
 
     const cartItemIds = data.user.cart.map((cartItem) => cartItem.product._id);
     const wishlistItemIds = data.user.wishlist.map(

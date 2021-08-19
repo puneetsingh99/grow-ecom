@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./login-styles.css";
 import { useEffect, useRef } from "react";
 import { LogoSvg } from "../../assets";
@@ -6,13 +6,21 @@ import { useSignup } from "./useSignup";
 import { useAuth } from "../../contexts";
 
 export const Signup = () => {
-  const nameRef = useRef();
-  useEffect(() => {
-    nameRef.current.focus();
-  }, []);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const { isUserLoggedIn } = useAuth();
 
-  const { signupState, dispatch, signupUser } = useSignup();
-  console.log(signupState);
+  const signup = useSignup();
+  const { signupState } = signup;
+  // const { status, error } = signup.signupState;
+
+  const focusInput = useRef(null);
+
+  useEffect(() => {
+    isUserLoggedIn && navigate(state?.from || "/");
+    focusInput.current && focusInput.current.focus();
+  }, [focusInput, isUserLoggedIn]);
+
   return (
     <>
       <div className={`flex ml-4 p-4`}>
@@ -34,49 +42,38 @@ export const Signup = () => {
           <div className={`input-text-container`}>
             <input
               type="text"
-              ref={nameRef}
+              ref={focusInput}
               placeholder="Name"
               className={`text-input`}
               value={signupState.name}
-              onChange={(e) =>
-                dispatch({ type: "SET_NAME", payload: e.target.value })
-              }
+              onChange={signup.setName}
             />
             <input
               type="text"
               placeholder="Email"
               className={`text-input`}
               value={signupState.email}
-              onChange={(e) =>
-                dispatch({ type: "SET_EMAIL", payload: e.target.value })
-              }
+              onChange={signup.setEmail}
             />
             <input
               type="password"
               placeholder="Password"
               className={`text-input`}
               value={signupState.password}
-              onChange={(e) =>
-                dispatch({ type: "SET_PASSWORD", payload: e.target.value })
-              }
+              onChange={signup.setPassword}
             />
             <input
               type="password"
               placeholder="Confirm Password"
               className={`text-input`}
               value={signupState.confirmPassword}
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_CONFIRM_PASSWORD",
-                  payload: e.target.value,
-                })
-              }
+              onChange={signup.setConfirmPassword}
             />
           </div>
 
           <button
             className={`btn`}
-            onClick={() => signupUser(signupState)}
+            onClick={signup.onSignupClicked}
           >{`Signup`}</button>
           <p className={`signup-link`}>
             {`Already have an account? `}

@@ -1,86 +1,84 @@
-import axios from "axios";
-import { isEmail } from "validator";
 import { useReducer } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { signupReducer } from "./signupReducer";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts";
-
-const initialState = {
-  name: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-};
-
-const signupReducer = (state, action) => {
-  switch (action.type) {
-    case "SET_NAME":
-      return {
-        ...state,
-        name: action.payload,
-      };
-    case "SET_EMAIL":
-      return {
-        ...state,
-        email: action.payload,
-      };
-    case "SET_PASSWORD":
-      return {
-        ...state,
-        password: action.payload,
-      };
-
-    case "SET_CONFIRM_PASSWORD":
-      return {
-        ...state,
-        confirmPassword: action.payload,
-      };
-
-    default:
-      return state;
-  }
-};
-
-const createUser = (name, email, password) => ({
-  name,
-  email,
-  password,
-});
+import { initialSignupState, validateSignupForm } from "./utils";
 
 export const useSignup = () => {
-  const [signupState, dispatch] = useReducer(signupReducer, initialState);
+  const [signupState, signupDispatch] = useReducer(
+    signupReducer,
+    initialSignupState
+  );
+  console.log(signupState);
+
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const { isUserLoggedIn, setIsUserLoggedIn } = useAuth();
+  const location = useLocation();
 
-  console.log({ isUserLoggedIn });
+  const { signupUser } = useAuth();
 
-  const signupUser = async ({ name, email, password, confirmPassword }) => {
-    if (!isEmail(email)) {
-      return console.log("Invalid email");
+  function setName(e) {
+    signupDispatch({ type: "SET_NAME", payload: e.target.value });
+  }
+
+  function setEmail(e) {
+    signupDispatch({ type: "SET_EMAIL", payload: e.target.value });
+  }
+
+  function setPassword(e) {
+    signupDispatch({ type: "SET_PASSWORD", payload: e.target.value });
+  }
+
+  function setConfirmPassword(e) {
+    signupDispatch({ type: "SET_CONFIRM_PASSWORD", payload: e.target.value });
+  }
+
+  function setStatus(status) {
+    signupDispatch({ type: "SET_STATUS", payload: status });
+  }
+
+  function resetForm() {
+    signupDispatch({ type: "RESET_FORM" });
+  }
+
+  function setError(error) {
+    signupDispatch({ type: "SET_ERROR", payload: { message: error.message } });
+  }
+
+  function toggleShowPassword() {
+    signupDispatch({ type: "TOGGLE_SHOW_PASSWORD" });
+  }
+
+  async function onSignupClicked(e) {
+    e.preventDefault();
+    const { name, email, password } = signupState;
+    const { isSignupFormValid, message } = validateSignupForm(signupState);
+
+    if (!isSignupFormValid) {
+      return setError({ message });
     }
-    if (password !== confirmPassword) {
-      return console.log("Passwords do not match");
-    }
-
-    const user = createUser(name, email, password);
-
-    const addUserUrl = `https://e-commerce-backend.puneetsingh2.repl.co/users/`;
 
     try {
-      const { data } = await axios.post(addUserUrl, user);
-      console.log(data);
-      if (!data.success) {
-        console.log(data.message);
-      } else {
-        console.log("State ");
-        console.log({ state });
-        setIsUserLoggedIn(() => true);
-        navigate(state?.from ? state.from : "/");
+      setStatus("pending");
+      const response = await signupUser(name, email, password);
+      if (response.success) {
+        setStatus("success");
+        resetForm();
+        return navigate(location.state?.from ? location.state.from : "/");
       }
+      return setError(response);
     } catch (error) {
-      console.log("user creation failed");
-      console.log(error.message);
+      console.log("signup error", error);
+      setError({ message: "Something went wrong." });
     }
+  }
+
+  return {
+    setName,
+    setEmail,
+    setPassword,
+    setConfirmPassword,
+    onSignupClicked,
+    toggleShowPassword,
+    signupState,
   };
-  return { signupState, dispatch, signupUser };
 };

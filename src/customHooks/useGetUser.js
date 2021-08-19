@@ -2,7 +2,8 @@ import { useEffect, useReducer } from "react";
 import { useAuth } from "../contexts";
 import { getUserReducer, getUser } from "../functions";
 
-export const useGetUser = (isUserLoggedIn, loggedInUser) => {
+export const useGetUser = () => {
+  const { isUserLoggedIn, userId } = useAuth();
   const [
     { user, errorMessage, cart, wishlist, wishlistItemIds, cartItemIds },
     dispatch,
@@ -16,10 +17,10 @@ export const useGetUser = (isUserLoggedIn, loggedInUser) => {
   });
 
   useEffect(() => {
-    if (loggedInUser) {
-      getUser(dispatch, loggedInUser);
+    if (isUserLoggedIn) {
+      getUser(dispatch, userId);
     }
-  }, [loggedInUser]);
+  }, [isUserLoggedIn]);
 
   return {
     user,
@@ -31,4 +32,3 @@ export const useGetUser = (isUserLoggedIn, loggedInUser) => {
     userDispatch: dispatch,
   };
 };
-// 6086fa0d0dfc55009dda056f

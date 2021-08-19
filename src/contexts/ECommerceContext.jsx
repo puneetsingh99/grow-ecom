@@ -19,7 +19,6 @@ export const ECommerceProvider = ({ children }) => {
   });
 
   const { allProducts, loading, errorMessage } = useGetProducts();
-  const { isUserLoggedIn, loggedInUser } = useAuth();
 
   const {
     levels,
@@ -52,7 +51,7 @@ export const ECommerceProvider = ({ children }) => {
     cartItemIds,
     wishlistItemIds,
     userDispatch,
-  } = useGetUser(isUserLoggedIn, loggedInUser);
+  } = useGetUser();
 
   return (
     <ECommerceContext.Provider

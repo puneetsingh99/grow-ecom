@@ -1,11 +1,11 @@
 import axios from "axios";
+import { apiAddToCart } from "../api";
 
 export const addToCart = async (userId, productId, setAlert, userDispatch) => {
   try {
     setAlert({ show: true, type: "info", message: "Adding... 😃" });
 
-    const url = `https://e-commerce-backend.puneetsingh2.repl.co/users/${userId}/cart/${productId}`;
-    const { data } = await axios.post(url);
+    const { data } = await axios.post(apiAddToCart(userId, productId));
 
     if (data.success) {
       const updatedCart = data.updatedCart.cart;
@@ -15,13 +15,13 @@ export const addToCart = async (userId, productId, setAlert, userDispatch) => {
       const newPayload = {
         ...data.user,
         cart: updatedCart,
-        cartItemIds
+        cartItemIds,
       };
 
       setAlert({
         show: true,
         type: "success",
-        message: "Added to Cart! 🥳"
+        message: "Added to Cart! 🥳",
       });
 
       userDispatch({ type: "UPDATE_CART", payload: newPayload });
@@ -29,7 +29,7 @@ export const addToCart = async (userId, productId, setAlert, userDispatch) => {
       setAlert({
         show: true,
         type: "warning",
-        message: `${data.message} 😅`
+        message: `${data.message} 😅`,
       });
     }
     return data;
@@ -37,7 +37,7 @@ export const addToCart = async (userId, productId, setAlert, userDispatch) => {
     setAlert({
       show: true,
       type: "error",
-      message: `${error.message} 😟`
+      message: `${error.message} 😟`,
     });
   }
 };

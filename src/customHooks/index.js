@@ -7,3 +7,4 @@ export { useCheckBox } from "./useCheckBox";
 export { useGetProduct } from "./useGetProduct";
 export { useCurrencyConverter } from "./useCurrencyConverter";
 export { usePrice } from "./usePrice";
+export { useLocalStorage } from "./useLocalStorage";

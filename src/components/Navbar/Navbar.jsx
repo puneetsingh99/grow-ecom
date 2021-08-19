@@ -40,7 +40,6 @@ export const Navbar = () => {
 
   return (
     <nav className="nav">
-      {/* Logo and brand name */}
       <div className="nav__branding">
         <div className="nav__links hamburger-menu">
           <span onClick={() => setShowHamburgerMenu((currState) => !currState)}>
@@ -66,7 +65,6 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Search bar  */}
       <div className="search-products">
         <Searchbar />
       </div>
@@ -78,11 +76,8 @@ export const Navbar = () => {
         />
       </div>
 
-      {/* Localization: Change language and currency */}
       <div className="localization">
-        {/* select country */}
         <div className="select-country">
-          {/* flag  icon */}
           <span
             className="flag"
             onClick={() => localizationDispatch({ type: "TOGGLE_COUNTRYLIST" })}
@@ -91,11 +86,8 @@ export const Navbar = () => {
             <Flag country={location} />
           </span>
 
-          {/* List of countries */}
           <LocationList />
         </div>
-
-        {/* select language */}
 
         <div className="select-language">
           <span
@@ -106,12 +98,10 @@ export const Navbar = () => {
           >
             <LanguageSvg />
           </span>
-          {/* List of countries */}
           <LanguageList />
         </div>
       </div>
 
-      {/* Profile, wishlist and cart  */}
       <div className="nav__links">
         <span
           className="search-icon--mobile"

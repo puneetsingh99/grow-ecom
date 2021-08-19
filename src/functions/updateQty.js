@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiUpdateQty } from "../api";
 
 export const updateQty = async (
   userId,
@@ -10,9 +11,7 @@ export const updateQty = async (
   try {
     setAlert({ show: true, type: "info", message: "Updating... 😃" });
 
-    const url = `https://e-commerce-backend.puneetsingh2.repl.co/users/${userId}/cart/${productId}?qty=${qty}`;
-
-    const { data } = await axios.post(url);
+    const { data } = await axios.post(apiUpdateQty(userId, productId, qty));
 
     if (data.success) {
       const updatedCart = data.updatedCart.cart;
@@ -22,7 +21,7 @@ export const updateQty = async (
       const newPayload = {
         ...data.user,
         cart: updatedCart,
-        cartItemIds
+        cartItemIds,
       };
 
       userDispatch({ type: "UPDATE_CART", payload: newPayload });
@@ -30,13 +29,13 @@ export const updateQty = async (
       setAlert({
         show: true,
         type: "success",
-        message: "Quantity Updated! 🥳"
+        message: "Quantity Updated! 🥳",
       });
     } else {
       setAlert({
         show: true,
         type: "warning",
-        message: `${data.message} 😅`
+        message: `${data.message} 😅`,
       });
     }
     return data;
@@ -44,7 +43,7 @@ export const updateQty = async (
     setAlert({
       show: true,
       type: "error",
-      message: `${error.message} 😟`
+      message: `${error.message} 😟`,
     });
   }
 };

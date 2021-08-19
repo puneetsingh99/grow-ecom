@@ -10,24 +10,13 @@ export const cartHandler = (
   inCart,
   qty = 1
 ) => {
-  console.log("data received by the cart handler");
-  console.log({
-    operation,
-    userId,
-    productId,
-    setAlert,
-    userDispatch,
-    inCart,
-    qty
-  });
-
   switch (operation) {
     case "add":
       inCart
         ? setAlert({
             show: true,
             type: "success",
-            message: `Added to Cart! 🥳`
+            message: `Added to Cart! 🥳`,
           })
         : addToCart(userId, productId, setAlert, userDispatch);
       break;

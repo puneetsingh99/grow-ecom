@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiRemoveFromWishlist } from "../api";
 
 export const removeFromWishlist = async (
   userId,
@@ -9,8 +10,9 @@ export const removeFromWishlist = async (
   try {
     setAlert({ show: true, type: "info", message: "Removing... 😊" });
 
-    const url = `https://e-commerce-backend.puneetsingh2.repl.co/users/${userId}/wishlist/${productId}`;
-    const { data } = await axios.delete(url);
+    const { data } = await axios.delete(
+      apiRemoveFromWishlist(userId, productId)
+    );
 
     if (data.success) {
       const updatedWishlist = data.updatedWishlist.wishlist;
@@ -22,13 +24,13 @@ export const removeFromWishlist = async (
       const newPayload = {
         ...data.user,
         wishlist: updatedWishlist,
-        wishlistItemIds
+        wishlistItemIds,
       };
 
       setAlert({
         show: true,
         type: "error",
-        message: "Removed from Wishlist 👍"
+        message: "Removed from Wishlist 👍",
       });
 
       userDispatch({ type: "UPDATE_WISHLIST", payload: newPayload });
@@ -36,7 +38,7 @@ export const removeFromWishlist = async (
       setAlert({
         show: true,
         type: "warning",
-        message: `${data.message} 😟`
+        message: `${data.message} 😟`,
       });
     }
     return data;
@@ -44,7 +46,7 @@ export const removeFromWishlist = async (
     setAlert({
       show: true,
       type: "error",
-      message: `${error.message}`
+      message: `${error.message}`,
     });
   }
 };

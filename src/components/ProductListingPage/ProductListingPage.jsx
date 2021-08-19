@@ -6,7 +6,7 @@ import {
   SidebarMobile,
   FilterBadgeList,
   Sort,
-  Navbar
+  Navbar,
 } from "../";
 import "./product-listing-page-styles.css";
 
@@ -18,13 +18,10 @@ export const ProductListingPage = () => {
     eCommerceState,
     user,
 
-    fetchUserErrorMessage
+    fetchUserErrorMessage,
   } = useECommerce();
 
   return (
-    //remove this  div it is only for testing purpose
-    // real code should start from the main element
-    // Do error handling
     <div>
       <Navbar />
       <main className={`product-listing-page`}>

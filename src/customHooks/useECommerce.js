@@ -14,7 +14,7 @@ export const useECommerce = () => {
     cartItemIds,
     wishlistItemIds,
     fetchUserErrorMessage,
-    userDispatch
+    userDispatch,
   } = useContext(ECommerceContext);
   return {
     eCommerceState,
@@ -28,6 +28,6 @@ export const useECommerce = () => {
     cartItemIds,
     wishlistItemIds,
     fetchUserErrorMessage,
-    userDispatch
+    userDispatch,
   };
 };

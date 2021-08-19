@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiRemoveFromCart } from "../api";
 
 export const removeFromCart = async (
   userId,
@@ -9,8 +10,7 @@ export const removeFromCart = async (
   try {
     setAlert({ show: true, type: "info", message: "Removing... 😊" });
 
-    const url = `https://e-commerce-backend.puneetsingh2.repl.co/users/${userId}/cart/${productId}`;
-    const { data } = await axios.delete(url);
+    const { data } = await axios.delete(apiRemoveFromCart(userId, productId));
 
     if (data.success) {
       const updatedCart = data.updatedCart.cart;
@@ -20,13 +20,13 @@ export const removeFromCart = async (
       const newPayload = {
         ...data.user,
         cart: updatedCart,
-        cartItemIds
+        cartItemIds,
       };
 
       setAlert({
         show: true,
         type: "error",
-        message: "Removed from Cart 👍"
+        message: "Removed from Cart 👍",
       });
 
       userDispatch({ type: "UPDATE_CART", payload: newPayload });
@@ -34,7 +34,7 @@ export const removeFromCart = async (
       setAlert({
         show: true,
         type: "warning",
-        message: `${data.message} 😟`
+        message: `${data.message} 😟`,
       });
     }
     return data;
@@ -42,7 +42,7 @@ export const removeFromCart = async (
     setAlert({
       show: true,
       type: "error",
-      message: `${error.message}`
+      message: `${error.message}`,
     });
   }
 };

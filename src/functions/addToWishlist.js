@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiAddToWishlist } from "../api";
 
 export const addToWishlist = async (
   userId,
@@ -7,10 +8,8 @@ export const addToWishlist = async (
   userDispatch
 ) => {
   try {
-    setAlert({ show: true, type: "info", message: "Adding... 😃" });
-
-    const url = `https://e-commerce-backend.puneetsingh2.repl.co/users/${userId}/wishlist/${productId}`;
-    const { data } = await axios.post(url);
+    setAlert({ show: true, type: "info", message: "Adding..." });
+    const { data } = await axios.post(apiAddToWishlist(userId, productId));
 
     if (data.success) {
       const updatedWishlist = data.updatedWishlist.wishlist;
@@ -22,13 +21,13 @@ export const addToWishlist = async (
       const newPayload = {
         ...data.user,
         wishlist: updatedWishlist,
-        wishlistItemIds
+        wishlistItemIds,
       };
 
       setAlert({
         show: true,
         type: "success",
-        message: "Added to Wishlist! 🥳"
+        message: "Added to Wishlist!",
       });
 
       userDispatch({ type: "UPDATE_WISHLIST", payload: newPayload });
@@ -36,7 +35,7 @@ export const addToWishlist = async (
       setAlert({
         show: true,
         type: "warning",
-        message: `${data.message} 😅`
+        message: `${data.message}`,
       });
     }
     return data;
@@ -44,7 +43,7 @@ export const addToWishlist = async (
     setAlert({
       show: true,
       type: "error",
-      message: `${error.message} 😟`
+      message: `${error.message}`,
     });
   }
 };

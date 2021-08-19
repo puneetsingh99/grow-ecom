@@ -4,20 +4,21 @@ import { translate, wishlistHandler, cartHandler } from "../../functions";
 import "./product-card-styles.css";
 import { StarSvg, WishlistSvg } from "../../assets";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts";
 
 export const ProductCard = ({
   product,
-  userId,
   setAlert,
   currencySymbol,
   selectedCurrencyRate,
   userDispatch,
   cartItemIds,
-  wishlistItemIds
+  wishlistItemIds,
 }) => {
   const { language } = useLocalization();
   const inWishlist = wishlistItemIds.includes(product._id);
   const inCart = cartItemIds.includes(product._id);
+  const { userId } = useAuth();
 
   const {
     image,
@@ -30,23 +31,12 @@ export const ProductCard = ({
     fastDelivery,
     inStock,
     category,
-    level
+    level,
   } = product;
-
 
   return (
     <article className={`product-card`}>
       <div className={`product-card__img-container`}>
-        {/* <img
-          src={image}
-          alt={imageAltText(title, author)}
-          className={`product-card__img  responsive-img`}
-        /> */}
-        {/* <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-1nCB0N83xsrsCphz2PwU62yKP3CWAPfnkBoHDueyw0FB5j0q4AOU6CU6cxqvvXBCDmQ&usqp=CAU"
-          alt="test book"
-          className={`product-card__img responsive-img`}
-        /> */}
         <img
           src={image}
           alt={imageAltText(title, author)}
@@ -96,10 +86,7 @@ export const ProductCard = ({
           <h1 className={`product-title`}>{title}</h1>
         </Link>
         <p className={`product-creator`}>{authorName(author)}</p>
-        <Price
-          mrp={mrp}
-          offerPercentage={offerPercentage}
-        />
+        <Price mrp={mrp} offerPercentage={offerPercentage} />
         <button
           className="btn-add-to-cart"
           onClick={() =>

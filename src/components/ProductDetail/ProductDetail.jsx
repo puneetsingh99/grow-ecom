@@ -7,11 +7,17 @@ import "./product-detail-styles.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
+import { wishlistHandler, cartHandler } from "../../functions";
+import { useAuth } from "../../contexts";
 
 export const ProductDetail = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
   useGetProduct(productId, setProduct);
+
+  const { userId } = useAuth();
+
+  const { userDispatch, inWishlist, inCart } = useECommerce();
 
   const {
     image,
@@ -21,10 +27,10 @@ export const ProductDetail = () => {
     price: mrp,
     offerPercentage,
     description,
-    reviews
   } = product;
 
-  console.log(reviews);
+  const [alert, setAlert] = useState({ show: false, message: "", type: "" });
+
   return (
     <main className={`product-description`}>
       <Navbar />

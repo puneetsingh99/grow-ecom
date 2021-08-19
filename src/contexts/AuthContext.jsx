@@ -1,52 +1,86 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { isEmail } from "validator";
-
+import React, { createContext, useContext, useState } from "react";
+import { setupAuthHeaders } from "../functions/setupAuthHeaders";
 import axios from "axios";
+import { API_LOGIN, API_SIGNUP } from "../api";
+import { useLocalStorage } from "../customHooks";
 
-export const AuthContext = createContext();
+const initialLoginStatus = {
+  isUserLoggedIn: false,
+  token: null,
+  userId: null,
+};
+
+export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(() =>
-    localStorage.getItem("isUserLoggedIn")
-  );
-  const [loggedInUser, setLoggedInUser] = useState(() =>
-    localStorage.getItem("loggedInUser")
+  const [storedLoginStatus, setStoredLoginStatus] = useLocalStorage(
+    "ecomLogin",
+    initialLoginStatus
   );
 
-  console.log("logged in user");
-  console.log(isUserLoggedIn);
+  const [isUserLoggedIn, setLogin] = useState(
+    () => storedLoginStatus.isUserLoggedIn
+  );
 
-  console.log("logged in user");
-  console.log(loggedInUser);
+  const [tokenAndUserId, setTokenAndUserId] = useState(() => ({
+    token: storedLoginStatus.token,
+    userId: storedLoginStatus.userId,
+  }));
 
-  const navigate = useNavigate();
-  const { state } = useLocation();
-  useEffect(() => {
-    localStorage.setItem("isUserLoggedIn", isUserLoggedIn);
-    localStorage.setItem("userId", loggedInUser);
-  }, [isUserLoggedIn, loggedInUser]);
+  const { token, userId } = tokenAndUserId;
+
+  setupAuthHeaders(token);
+
+  function loginUser(user) {
+    const { token, userId } = user;
+    setLogin(true);
+    setTokenAndUserId(() => ({ token, userId }));
+    setStoredLoginStatus({ isUserLoggedIn: true, token, userId });
+  }
+
+  function logout() {
+    localStorage.removeItem("ecomLogin");
+    setLogin(false);
+    setTokenAndUserId(() => ({ token: null, userId: null }));
+  }
 
   const loginUserWithCredentials = async (email, password) => {
-    if (!isEmail(email)) {
-      return console.log("Invalid email");
-    }
-    const loginUrl = `https://e-commerce-backend.puneetsingh2.repl.co/users/login`;
     try {
-      const { data } = await axios.post(loginUrl, {
+      const response = await axios.post(API_LOGIN, { email, password });
+
+      if (response.data.success) {
+        loginUser(response?.data.user);
+      }
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+      return {
+        success: false,
+        message: error.message,
+        errorMessage: "Something went wrong",
+      };
+    }
+  };
+
+  const signupUser = async (name, email, password) => {
+    try {
+      const response = await axios.post(API_SIGNUP, {
+        name,
         email,
         password,
       });
 
-      console.log(data);
-
-      if (data.success) {
-        setIsUserLoggedIn(() => true);
-        setLoggedInUser(() => data.user);
-        navigate(state?.from ? state.from : "/");
+      if (response.data.success) {
+        loginUser(response?.data.user);
       }
+      return response.data;
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      return {
+        success: false,
+        message: "Could not Signup",
+        errorMessage: "Something went wrong",
+      };
     }
   };
 
@@ -54,10 +88,11 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         isUserLoggedIn,
-        setIsUserLoggedIn,
-        loggedInUser,
-        setLoggedInUser,
         loginUserWithCredentials,
+        logout,
+        token,
+        userId,
+        signupUser,
       }}
     >
       {children}

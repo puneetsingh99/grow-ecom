@@ -4,7 +4,7 @@ import {
   AlertHandler,
   PlaceOrder,
   Navbar,
-  ApplyCouponModal
+  ApplyCouponModal,
 } from "../";
 import { TagSvg } from "../../assets";
 import "../ProductList/product-list-styles.css";
@@ -12,7 +12,7 @@ import "../ProductListingPage/product-listing-page-styles.css";
 import {
   useECommerce,
   useCurrencyConverter,
-  useLocalization
+  useLocalization,
 } from "../../customHooks";
 import { useState } from "react";
 import { translate, roundToTwoDigits } from "../../functions";
@@ -21,13 +21,8 @@ import { EmptyCart } from "./EmptyCart";
 
 export const Cart = () => {
   const { language } = useLocalization();
-  const {
-    cart,
-    cartItemIds,
-    wishlistItemIds,
-    user,
-    userDispatch
-  } = useECommerce();
+  const { cart, cartItemIds, wishlistItemIds, user, userDispatch } =
+    useECommerce();
 
   const [alert, setAlert] = useState({ show: false, message: "", type: "" });
   const { currencySymbol, selectedCurrencyRate } = useCurrencyConverter();

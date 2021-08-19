@@ -7,7 +7,7 @@ import {
   ProductDetail,
   PrivateRoute,
   Login,
-  Signup
+  Signup,
 } from "./components";
 import { Routes, Route } from "react-router-dom";
 
@@ -15,13 +15,13 @@ export default function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/products" end element={<ProductListingPage />} />
         <Route path="/" end element={<Home />} />
+        <PrivateRoute path="/products" end element={<ProductListingPage />} />
         <PrivateRoute path="/wishlist" element={<Wishlist />} />
         <PrivateRoute path="/cart" element={<Cart />} />
         <Route path="/login" end element={<Login />} />
         <Route path="/signup" end element={<Signup />} />
-        <Route
+        <PrivateRoute
           path="products/product/:productId"
           end
           element={<ProductDetail />}

@@ -24,7 +24,7 @@
   display: grid;
   grid-template-columns: 45% 1fr;
   opacity: 0;
-  transition: all 0.3s linear;
+  transition: all 1s ease-in-out;
   padding: 0rem 1rem;
 }
 

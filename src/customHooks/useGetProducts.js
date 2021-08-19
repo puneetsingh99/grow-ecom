@@ -7,11 +7,11 @@ export const useGetProducts = () => {
     {
       allProducts: [],
       loading: false,
-      errorMessage: ""
+      errorMessage: "",
     }
   );
 
   useEffect(() => getAllProducts(dispatch), []);
 
-  return { allProducts, loading, errorMessage }; //change array to object
+  return { allProducts, loading, errorMessage };
 };

@@ -8,13 +8,14 @@ export const wishlistHandler = (
   userDispatch,
   inWishlist
 ) => {
+  console.log(userId);
   switch (operation) {
     case "add":
       inWishlist
         ? setAlert({
             show: true,
             type: "info",
-            message: `Product already present in Wishlist 😊`
+            message: `Product already present in Wishlist 😊`,
           })
         : addToWishlist(userId, productId, setAlert, userDispatch);
       break;

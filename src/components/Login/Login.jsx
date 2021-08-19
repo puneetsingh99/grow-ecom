@@ -1,27 +1,24 @@
 import "./login-styles.css";
-import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
 import { LogoSvg } from "../../assets";
+import { useRef, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useLogin } from "./useLogin";
 import { useAuth } from "../../contexts";
+import { ROUTE_SIGNUP } from "../../routes";
 
 export const Login = () => {
-  const emailInputRef = useRef();
-  const {
-    loginUserWithCredentials,
-    isUserLoggedIn,
-    setIsUserLoggedIn,
-    loggedInUser,
-  } = useAuth();
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const { isUserLoggedIn } = useAuth();
 
-  console.log("useAuth data coming from login page");
-  console.log(useAuth());
+  const login = useLogin();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const focusInput = useRef(null);
 
   useEffect(() => {
-    emailInputRef.current.focus();
-  }, []);
+    isUserLoggedIn && navigate(state?.from || "/");
+    focusInput.current && focusInput.current.focus();
+  }, [focusInput, isUserLoggedIn]);
 
   return (
     <>
@@ -46,10 +43,10 @@ export const Login = () => {
               type="text"
               name="email"
               id="email"
-              ref={emailInputRef}
+              ref={focusInput}
               placeholder="Email"
               className={`text-input`}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={login.setEmail}
             />
             <input
               type="password"
@@ -57,17 +54,22 @@ export const Login = () => {
               id="password"
               placeholder="Password"
               className={`text-input`}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={login.setPassword}
             />
           </div>
 
           <button
             className={`btn`}
-            onClick={() => loginUserWithCredentials(email, password)}
+            onClick={login.onLoginClicked}
           >{`Login`}</button>
+
+          <button
+            className={`btn`}
+            onClick={login.onGuestLoginClicked}
+          >{`Login as guest`}</button>
           <p className={`signup-link`}>
             {`Don't have an account? `}
-            <Link className={`text-link`} to={`/signup`}>
+            <Link className={`text-link`} to={ROUTE_SIGNUP}>
               <span className={`dark-text`}>{`Signup`}</span>
             </Link>
           </p>

@@ -18,7 +18,7 @@ export const CartProductCard = ({
   cartItemIds,
   wishlistItemIds,
   qty,
-  alert
+  alert,
 }) => {
   const { language } = useLocalization();
   const inWishlist = wishlistItemIds.includes(product._id);
@@ -36,12 +36,11 @@ export const CartProductCard = ({
     fastDelivery,
     inStock,
     category,
-    level
+    level,
   } = product;
 
   return (
     <article className={`cart-product-card`}>
-      {/* img and details container */}
       <div className={`cart-product-card__info`}>
         <div className={`cart-product-card__img-container`}>
           <img
@@ -49,7 +48,7 @@ export const CartProductCard = ({
             alt={imageAltText(title, author)}
             className={`cart-product-card__img`}
           />
-        </div> 
+        </div>
         <div className={`cart-product-card__details`}>
           <h1 className={`product-title--cart`}>{title}</h1>
           <p className={`product-creator product-creator--cart mb-4`}>
@@ -136,7 +135,3 @@ export const CartProductCard = ({
     </article>
   );
 };
-
-// Upon initial load get the wishlist and cart of the user.
-// then using that  id match the product's id. if it's present in the cart then set
-// in cart flag and similarly for wishlist flag

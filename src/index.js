@@ -7,10 +7,7 @@ import {
   AuthProvider,
 } from "./contexts";
 import App from "./App";
-import { setupMockServer } from "./api/mock.server";
 import { BrowserRouter as Router } from "react-router-dom";
-
-// setupMockServer();
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
