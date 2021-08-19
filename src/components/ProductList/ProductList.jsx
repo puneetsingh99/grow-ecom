@@ -1,17 +1,10 @@
 import { ProductCard, AlertHandler } from "../";
 import "./product-list-styles.css";
 import { useECommerce, useCurrencyConverter } from "../../customHooks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const ProductList = ({ filteredData }) => {
-  const {
-    cart,
-    wishlist,
-    cartItemIds,
-    wishlistItemIds,
-    user,
-    userDispatch
-  } = useECommerce();
+  const { cartItemIds, wishlistItemIds, user, userDispatch } = useECommerce();
   const { currencySymbol, selectedCurrencyRate } = useCurrencyConverter();
 
   const [alert, setAlert] = useState({ show: false, message: "", type: "" });
