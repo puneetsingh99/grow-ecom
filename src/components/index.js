@@ -1,5 +1,5 @@
 export { ProductCard } from "./ProductCard/ProductCard";
-export { WishlistProductCard } from "./ProductCard/WishlistProductCard";
+export { WishlistProductCard } from "./Wishlist/WishlistProductCard";
 export { ProductList } from "./ProductList/ProductList";
 export { Price } from "./ProductCard/Price/Price";
 export { imageAltText } from "./ProductCard/functions/imageAltText";
@@ -32,7 +32,7 @@ export { EmptyWishlist } from "./Wishlist/EmptyWishlist";
 export { QuantitySelectorModal } from "./Cart/QuantitySelectorModal";
 export { PlaceOrder } from "./Cart/PlaceOrder";
 export { ApplyCouponModal } from "./Cart/ApplyCouponModal";
-export { CartProductCard } from "./ProductCard/CartProductCard";
+export { CartProductCard } from "./Cart/CartProductCard";
 export { QuantitySelector } from "./Cart/QuantitySelector";
 export { Home } from "./Home/Home";
 export { HomeSlider } from "./Home/HomeSlider";

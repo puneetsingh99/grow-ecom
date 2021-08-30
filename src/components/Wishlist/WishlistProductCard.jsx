@@ -1,7 +1,7 @@
-import { imageAltText, authorName, Price } from "../";
+import { imageAltText, authorName, Price } from "..";
 import { useLocalization } from "../../customHooks";
 import { translate, wishlistHandler, cartHandler } from "../../functions";
-import "./product-card-styles.css";
+import "../ProductCard/product-card-styles.css";
 import { DismissSvg } from "../../assets";
 
 export const WishlistProductCard = ({
@@ -12,7 +12,7 @@ export const WishlistProductCard = ({
   selectedCurrencyRate,
   userDispatch,
   cartItemIds,
-  wishlistItemIds
+  wishlistItemIds,
 }) => {
   const { language } = useLocalization();
   const inWishlist = wishlistItemIds.includes(product._id);
@@ -29,7 +29,7 @@ export const WishlistProductCard = ({
     fastDelivery,
     inStock,
     category,
-    level
+    level,
   } = product;
 
   return (
@@ -37,17 +37,6 @@ export const WishlistProductCard = ({
       <div
         className={`product-card__img-container wishlist-product-card__img-container`}
       >
-        {/* <img
-          src={image}
-          alt={imageAltText(title, author)}
-          className={`product-card__img  responsive-img`}
-        /> */}
-        {/* <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-1nCB0N83xsrsCphz2PwU62yKP3CWAPfnkBoHDueyw0FB5j0q4AOU6CU6cxqvvXBCDmQ&usqp=CAU"
-          alt="test book"
-          className={`product-card__img responsive-img`}
-        /> */}
-
         <img
           src={image}
           alt={imageAltText(title, author)}
@@ -97,7 +86,3 @@ export const WishlistProductCard = ({
     </article>
   );
 };
-
-// Upon initial load get the wishlist and cart of the user.
-// then using that  id match the product's id. if it's present in the cart then set
-// in cart flag and similarly for wishlist flag

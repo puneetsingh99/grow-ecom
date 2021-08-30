@@ -1,11 +1,11 @@
-import { imageAltText, authorName, Price } from "../";
+import { imageAltText, authorName, Price } from "..";
 import { useLocalization } from "../../customHooks";
 import { translate, wishlistHandler, cartHandler } from "../../functions";
-import "./product-card-styles.css";
+import "../ProductCard/product-card-styles.css";
 import { DismissSvg, DropDownSvg } from "../../assets";
 import "../Cart/cart-styles.css";
-import { QuantitySelector } from "../Cart/QuantitySelector";
-import { QuantitySelectorModal } from "../Cart/QuantitySelectorModal";
+import { QuantitySelector } from "./QuantitySelector";
+import { QuantitySelectorModal } from "./QuantitySelectorModal";
 import { useState } from "react";
 
 export const CartProductCard = ({
