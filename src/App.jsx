@@ -1,4 +1,6 @@
 import "./styles.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import {
   ProductListingPage,
   Wishlist,
@@ -27,6 +29,7 @@ export default function App() {
           element={<ProductDetail />}
         />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
