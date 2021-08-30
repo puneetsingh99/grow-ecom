@@ -18,6 +18,7 @@ export const ProductCard = ({ product }) => {
           src={image}
           alt={imageAltText(title, author)}
           className={`product-card__img responsive-img`}
+          loading="lazy"
         />
       </div>
       <div className="product-card__details">

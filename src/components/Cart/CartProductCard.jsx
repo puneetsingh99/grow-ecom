@@ -47,6 +47,7 @@ export const CartProductCard = ({
             src={image}
             alt={imageAltText(title, author)}
             className={`cart-product-card__img`}
+            loading="lazy"
           />
         </div>
         <div className={`cart-product-card__details`}>
@@ -110,7 +111,6 @@ export const CartProductCard = ({
               );
             }}
           >
-            {/* {translate("Remove", language)} */}
             Remove
           </button>
         </div>

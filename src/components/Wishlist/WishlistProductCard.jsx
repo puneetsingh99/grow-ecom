@@ -41,6 +41,7 @@ export const WishlistProductCard = ({
           src={image}
           alt={imageAltText(title, author)}
           className={`product-card__img  responsive-img wishlist-product-card__img`}
+          loading="lazy"
         />
         <span
           className="product-dismiss"
