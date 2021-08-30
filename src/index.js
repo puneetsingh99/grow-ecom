@@ -5,6 +5,7 @@ import {
   LocalizationProvider,
   HamburgerProvider,
   AuthProvider,
+  ProductProvider,
 } from "./contexts";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -15,11 +16,13 @@ ReactDOM.render(
     <Router>
       <AuthProvider>
         <ECommerceProvider>
-          <LocalizationProvider>
-            <HamburgerProvider>
-              <App />
-            </HamburgerProvider>
-          </LocalizationProvider>
+          <ProductProvider>
+            <LocalizationProvider>
+              <HamburgerProvider>
+                <App />
+              </HamburgerProvider>
+            </LocalizationProvider>
+          </ProductProvider>
         </ECommerceProvider>
       </AuthProvider>
     </Router>

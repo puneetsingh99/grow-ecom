@@ -1,35 +1,20 @@
-import { ProductCard, AlertHandler } from "../";
+import { ProductCard } from "../";
 import "./product-list-styles.css";
-import { useECommerce, useCurrencyConverter } from "../../customHooks";
-import { useState } from "react";
+import { useProducts } from "../../contexts/ProductContext/ProductContext";
+import { Loader } from "../Loader/Loader";
 
-export const ProductList = ({ filteredData }) => {
-  const { cartItemIds, wishlistItemIds, user, userDispatch } = useECommerce();
-  const { currencySymbol, selectedCurrencyRate } = useCurrencyConverter();
-
-  const [alert, setAlert] = useState({ show: false, message: "", type: "" });
+export const ProductList = () => {
+  const { products } = useProducts();
+  const { status, error } = products;
 
   return (
     <ul className={`product-list`}>
-      {filteredData.map((product) => {
-        return (
-          <li key={product._id}>
-            {
-              <ProductCard
-                product={product}
-                userId={user._id}
-                setAlert={setAlert}
-                currencySymbol={currencySymbol}
-                selectedCurrencyRate={selectedCurrencyRate}
-                userDispatch={userDispatch}
-                wishlistItemIds={wishlistItemIds}
-                cartItemIds={cartItemIds}
-              />
-            }
-          </li>
-        );
-      })}
-      {alert.show && <AlertHandler {...alert} setAlert={setAlert} />}
+      {status === "loading" && <Loader />}
+      {status === "succeeded" &&
+        products.products.map((product) => {
+          return <ProductCard key={product._id} product={product} />;
+        })}
+      {status === "error" && <p>{error}</p>}
     </ul>
   );
 };

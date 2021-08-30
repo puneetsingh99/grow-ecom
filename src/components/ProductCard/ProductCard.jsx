@@ -1,38 +1,15 @@
 import { imageAltText, authorName, Price } from "../";
 import { useLocalization } from "../../customHooks";
-import { translate, wishlistHandler, cartHandler } from "../../functions";
+import { translate } from "../../functions";
 import "./product-card-styles.css";
-import { StarSvg, WishlistSvg } from "../../assets";
+import { StarSvg } from "../../assets";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { notify } from "../../utils/notify";
 
-export const ProductCard = ({
-  product,
-  setAlert,
-  currencySymbol,
-  selectedCurrencyRate,
-  userDispatch,
-  cartItemIds,
-  wishlistItemIds,
-}) => {
+export const ProductCard = ({ product }) => {
   const { language } = useLocalization();
-  const inWishlist = wishlistItemIds.includes(product._id);
-  const inCart = cartItemIds.includes(product._id);
-  const { userId } = useAuth();
-
-  const {
-    image,
-    title,
-    author,
-    price: mrp,
-    offerPercentage,
-    rating,
-    productType,
-    fastDelivery,
-    inStock,
-    category,
-    level,
-  } = product;
+  const { image, title, author, price: mrp, offerPercentage, rating } = product;
 
   return (
     <article className={`product-card`}>
@@ -55,30 +32,10 @@ export const ProductCard = ({
           </div>
           <div
             className="add-to-wishlist"
-            onClick={() =>
-              inWishlist
-                ? wishlistHandler(
-                    "remove",
-                    userId,
-                    product._id,
-                    setAlert,
-                    userDispatch,
-                    inWishlist
-                  )
-                : wishlistHandler(
-                    "add",
-                    userId,
-                    product._id,
-                    setAlert,
-                    userDispatch,
-                    inWishlist
-                  )
-            }
+            onClick={() => console.log("add to wishlist")}
           >
-            <span
-              className={`add-to-wishlist-icon ${inWishlist && "text-red-400"}`}
-            >
-              <WishlistSvg toggle={inWishlist} />
+            <span className={`add-to-wishlist-icon ${false && `text-red-500`}`}>
+              {false ? <AiFillHeart /> : <AiOutlineHeart />}
             </span>
           </div>
         </div>
@@ -89,16 +46,7 @@ export const ProductCard = ({
         <Price mrp={mrp} offerPercentage={offerPercentage} />
         <button
           className="btn-add-to-cart"
-          onClick={() =>
-            cartHandler(
-              "add",
-              userId,
-              product._id,
-              setAlert,
-              userDispatch,
-              inCart
-            )
-          }
+          onClick={() => notify("Add to cart", "success")}
         >
           {translate("Add to Cart", language)}
         </button>
