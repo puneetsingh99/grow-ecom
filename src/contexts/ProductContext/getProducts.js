@@ -6,7 +6,7 @@ export const getProducts = async () => {
     const response = await axios.get(API_ALL_PRODUCTS);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return {
       success: false,
       message: "Could not retrieve products",
