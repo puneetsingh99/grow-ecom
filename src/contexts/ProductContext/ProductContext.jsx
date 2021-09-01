@@ -10,20 +10,21 @@ const initialState = {
 };
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState(initialState);
+  const [productState, setProductState] = useState(initialState);
 
   useEffect(() => {
-    if (products.status === "idle") {
+    if (productState.status === "idle") {
       (async function () {
         try {
-          setProducts((prevProducts) => ({
-            status: "loading",
+          setProductState((prevProducts) => ({
             ...prevProducts,
+            status: "loading",
           }));
+
           const response = await getProducts();
 
           if (response.products) {
-            return setProducts({
+            return setProductState({
               status: "succeeded",
               products: response.products,
               error: null,
@@ -36,14 +37,14 @@ export const ProductProvider = ({ children }) => {
             error: response.message,
           });
         } catch (error) {
-          console.log(error.message);
+          console.error(error.message);
         }
       })();
     }
-  }, [products.status]);
+  }, [productState.status]);
 
   return (
-    <ProductContext.Provider value={{ products }}>
+    <ProductContext.Provider value={{ productState }}>
       {children}
     </ProductContext.Provider>
   );
