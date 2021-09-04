@@ -48,9 +48,6 @@ export const CartProvider = ({ children }) => {
         removeFromCartStates,
         toastConfig
       );
-
-      console.log(data);
-
       if (data.updatedCart) {
         cartDispatch({ type: "REMOVE_FROM_CART", payload: productId });
       }
@@ -66,9 +63,8 @@ export const CartProvider = ({ children }) => {
         addToCartStates,
         toastConfig
       );
-
       if (data.updatedCart) {
-        cartDispatch({ type: "ADD_TO_CART", payload: product });
+        cartDispatch({ type: "ADD_TO_CART", payload: { product, qty: 1 } });
       }
     } catch (error) {
       console.error(error.message);
@@ -77,6 +73,11 @@ export const CartProvider = ({ children }) => {
 
   const cartTotal = () => {
     const cartLength = cartState.cart?.length;
+
+    if (!cartLength) {
+      return { total, discountedTotal };
+    }
+
     let total = 0;
     let discountedTotal = 0;
 
@@ -124,6 +125,7 @@ export const CartProvider = ({ children }) => {
     cartState,
     cartDispatch,
     onAddToCartClicked,
+    addToCart,
     removeFromCart,
     inCart,
     cartTotal,

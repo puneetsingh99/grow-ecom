@@ -4,12 +4,8 @@ import { useLocalization } from "../../../customHooks";
 import { useCart } from "../../../contexts/CartContext/CartContext";
 
 const getHeader = (count, language) => {
-  let heading;
-  if (count === 1) {
-    heading = translate("item", language);
-  } else {
-    heading = translate("items", language);
-  }
+  const heading =
+    count === 1 ? translate("item", language) : translate("items", language);
   return `${count} ${heading}`;
 };
 

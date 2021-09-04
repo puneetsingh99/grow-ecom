@@ -1,6 +1,7 @@
 const addToCart = (state, product) => {
+  const { _id } = product.product;
   const present = state.cart.find(
-    (cartProduct) => cartProduct._id === product._id
+    (cartProduct) => cartProduct.product._id === _id
   );
 
   if (!present) {

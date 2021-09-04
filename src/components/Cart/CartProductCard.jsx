@@ -8,17 +8,9 @@ import { QuantitySelector } from "./QuantitySelector";
 import { QuantitySelectorModal } from "./QuantitySelectorModal";
 import { useState } from "react";
 import { useCart } from "../../contexts/CartContext/CartContext";
+import { useMoveToWishlist } from "./hooks/useMoveToWishlist";
 
-export const CartProductCard = ({
-  product,
-  userId,
-  setAlert,
-  currencySymbol,
-  selectedCurrencyRate,
-  userDispatch,
-  cartItemIds,
-  wishlistItemIds,
-}) => {
+export const CartProductCard = ({ product }) => {
   const { language } = useLocalization();
   // const inWishlist = wishlistItemIds.includes(product._id);
   // const inCart = cartItemIds.includes(product._id);
@@ -28,6 +20,7 @@ export const CartProductCard = ({
 
   const { image, title, author, price: mrp, offerPercentage } = product.product;
   const { qty } = product;
+  const { onMoveToWishlistClicked } = useMoveToWishlist();
 
   return (
     <article className={`cart-product-card`}>
@@ -49,8 +42,8 @@ export const CartProductCard = ({
             <Price
               mrp={mrp}
               offerPercentage={offerPercentage}
-              currencySymbol={currencySymbol}
-              selectedCurrencyRate={selectedCurrencyRate}
+              currencySymbol={"R"}
+              selectedCurrencyRate={1}
             />
             <p className={`ml-2 text-red-400 font-medium`}>
               {`${offerPercentage !== 0 ? `${offerPercentage}% off` : ""}`}
@@ -58,7 +51,7 @@ export const CartProductCard = ({
           </div>
           <div
             className={`cart-product-qty`}
-            onClick={() => setShowQtyModal(() => true)}
+            onClick={() => setShowQtyModal(true)}
           >
             <p
               className={`cart-product-qty-indicator flex align-items justify-between`}
@@ -97,7 +90,7 @@ export const CartProductCard = ({
         <div className="cart-btn-move-to-wishlist__wrapper">
           <button
             className="cart-btn cart-btn--move-to-wishlist"
-            onClick={() => console.log("move to wishlist")}
+            onClick={() => onMoveToWishlistClicked(product.product)}
           >
             Move to wishlist
           </button>

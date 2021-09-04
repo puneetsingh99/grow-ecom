@@ -9,3 +9,9 @@ export const addToCartStates = {
   success: "Added to cart",
   error: "Could not add to cart",
 };
+
+export const moveToWishlistStates = {
+  pending: "Moving to wishlist...",
+  success: "Moved to wishlist",
+  error: "Could not move to wishlist",
+};

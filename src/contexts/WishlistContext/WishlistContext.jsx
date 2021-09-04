@@ -1,9 +1,8 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_LOGIN } from "../../routes";
 import { wishlistReducer } from "./wishlistReducer";
-import { useEffect } from "react/cjs/react.development";
 import { getWishlist } from "./getWishlist";
 import { toastConfig } from "../../utils";
 import axios from "axios";

@@ -5,12 +5,14 @@ import "../ProductCard/product-card-styles.css";
 import { DismissSvg } from "../../assets";
 import { useCurrencyConverter } from "../../customHooks";
 import { useWishlist } from "../../contexts/WishlistContext/WishlistContext";
+import { useMoveToCart } from "./useMoveToCart";
 
 export const WishlistProductCard = ({ product }) => {
   const { image, title, author, price: mrp, offerPercentage } = product;
   const { currencySymbol, selectedCurrencyRate } = useCurrencyConverter();
   const { language } = useLocalization();
   const { removeFromWishlist } = useWishlist();
+  const { onMoveToCartClicked } = useMoveToCart();
 
   return (
     <article className={`product-card`}>
@@ -41,7 +43,7 @@ export const WishlistProductCard = ({ product }) => {
         />
         <button
           className="btn-add-to-cart"
-          onClick={() => console.log("move to cart")}
+          onClick={() => onMoveToCartClicked(product)}
         >
           {translate("Move to Cart", language)}
         </button>
