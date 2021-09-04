@@ -2,7 +2,7 @@ import { ProductCard } from "../";
 import "./product-list-styles.css";
 import { useProducts } from "../../contexts/ProductContext/ProductContext";
 import { Loader } from "../Loader/Loader";
-import { notify } from "../../utils";
+import { toast } from "react-toastify";
 
 export const ProductList = () => {
   const { productState } = useProducts();
@@ -12,10 +12,10 @@ export const ProductList = () => {
     <ul className={`product-list`}>
       {status === "loading" && <Loader />}
       {status === "succeeded" &&
-        products.map((product) => {
-          return <ProductCard key={product._id} product={product} />;
-        })}
-      {status === "error" && notify(error, "error")}
+        products.map((product) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      {status === "error" && toast.error(error)}
     </ul>
   );
 };

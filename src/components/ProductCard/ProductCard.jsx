@@ -5,11 +5,15 @@ import "./product-card-styles.css";
 import { StarSvg } from "../../assets";
 import { Link } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { notify } from "../../utils/notify";
+import { useWishlist } from "../../contexts/WishlistContext/WishlistContext";
+import { useCart } from "../../contexts/CartContext/CartContext";
 
 export const ProductCard = ({ product }) => {
   const { language } = useLocalization();
   const { image, title, author, price: mrp, offerPercentage, rating } = product;
+
+  const { onAddToWishlistClicked, inWishlist } = useWishlist();
+  const { onAddToCartClicked } = useCart();
 
   return (
     <article className={`product-card`}>
@@ -33,10 +37,14 @@ export const ProductCard = ({ product }) => {
           </div>
           <div
             className="add-to-wishlist"
-            onClick={() => console.log("add to wishlist")}
+            onClick={() => onAddToWishlistClicked(product)}
           >
-            <span className={`add-to-wishlist-icon ${false && `text-red-500`}`}>
-              {false ? <AiFillHeart /> : <AiOutlineHeart />}
+            <span
+              className={`add-to-wishlist-icon ${
+                inWishlist(product._id) && `text-red-500`
+              }`}
+            >
+              {inWishlist(product._id) ? <AiFillHeart /> : <AiOutlineHeart />}
             </span>
           </div>
         </div>
@@ -47,7 +55,7 @@ export const ProductCard = ({ product }) => {
         <Price mrp={mrp} offerPercentage={offerPercentage} />
         <button
           className="btn-add-to-cart"
-          onClick={() => notify("Add to cart", "success")}
+          onClick={() => onAddToCartClicked(product)}
         >
           {translate("Add to Cart", language)}
         </button>

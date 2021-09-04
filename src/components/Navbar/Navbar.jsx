@@ -23,8 +23,9 @@ import {
 import { useLocalization, useHamburger, useECommerce } from "../../customHooks";
 
 import { useState } from "react";
-
-// write every classname in template string instead  of string iteral
+import { useWishlist } from "../../contexts/WishlistContext/WishlistContext";
+import { useCart } from "../../contexts/CartContext/CartContext";
+import { useAuth } from "../../contexts";
 
 export const Navbar = () => {
   const { location, localizationDispatch, translatedStrings, showCountryList } =
@@ -32,11 +33,28 @@ export const Navbar = () => {
   const [showSearchMobile, setShowSearchMobile] = useState(false);
   const { showHamburgerMenu, setShowHamburgerMenu } = useHamburger();
   const [showAccountMenu, setShowAccountMenu] = useState(false);
+  const { isUserLoggedIn } = useAuth();
 
   const { cartItemIds, wishlistItemIds } = useECommerce();
 
-  const wishlistCount = wishlistItemIds.length;
-  const cartCount = cartItemIds.length;
+  const { wishlistState } = useWishlist();
+  const { cartState } = useCart();
+
+  let wishlistIcon, cartIcon;
+
+  if (wishlistState.status === "succeeded") {
+    if (wishlistState.wishlist.length > 0) {
+      wishlistIcon = (
+        <div className="badge-qty"> {wishlistState.wishlist.length} </div>
+      );
+    }
+  }
+
+  if (cartState.status === "succeeded") {
+    if (cartState.cart.length > 0) {
+      cartIcon = <div className="badge-qty"> {cartState.cart.length} </div>;
+    }
+  }
 
   return (
     <nav className="nav">
@@ -124,16 +142,14 @@ export const Navbar = () => {
         <Link to="/wishlist" className={`text-link`}>
           <div className={`badge-icon-ecom`}>
             <HeartSvg />
-            {wishlistCount !== 0 && (
-              <div className="badge-qty"> {wishlistCount} </div>
-            )}
+            {wishlistIcon}
           </div>
         </Link>
 
         <Link to="/cart" className={`text-link`}>
           <div className={`badge-icon-ecom`}>
             <CartSvg />
-            {cartCount !== 0 && <div className="badge-qty"> {cartCount} </div>}
+            {cartIcon}
           </div>
         </Link>
       </div>

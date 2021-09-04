@@ -6,20 +6,9 @@ import { translate } from "../../functions";
 export const FilterBadgeList = () => {
   const { language } = useLocalization();
 
-  const {
-    filteredData,
-    loading,
-    errorMessage,
-    eCommerceState,
-    eCommerceDispatch
-  } = useECommerce();
-  const {
-    levels,
-    categories,
-    productType,
-    fastDeliveryOnly,
-    inStockOnly
-  } = eCommerceState;
+  const { eCommerceState, eCommerceDispatch } = useECommerce();
+  const { levels, categories, productType, fastDeliveryOnly, inStockOnly } =
+    eCommerceState;
 
   return (
     <ul className={`filter-badge-list`}>

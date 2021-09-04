@@ -4,12 +4,8 @@ import { translate } from "../../functions";
 import { Flag } from "../";
 
 export const LocationListMobile = () => {
-  const {
-    location,
-    language,
-    localizationDispatch,
-    showCountryList
-  } = useLocalization();
+  const { location, language, localizationDispatch, showCountryList } =
+    useLocalization();
 
   return (
     <ul

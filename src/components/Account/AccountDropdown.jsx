@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 
 export const AccountDropdown = ({ showAccountMenu }) => {
   const { isUserLoggedIn, logout } = useAuth();
-  console.log({ isUserLoggedIn });
   const navigate = useNavigate();
   return (
     <article className={`account-dropdown ${showAccountMenu && "show"}`}>

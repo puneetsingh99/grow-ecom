@@ -1,27 +1,25 @@
 import { useState } from "react";
 import { ApplyCouponModal } from "../";
 import { TagSvg } from "../../assets";
+import { roundToTwoDigits } from "../../functions";
+import { useCart } from "../../contexts/CartContext/CartContext";
 
 export const PlaceOrder = ({
-  cartCount,
-  cartTotal,
-  discountedCartTotal,
   currencySymbol,
-  roundToTwoDigits,
   isCouponApplied,
   setCouponDiscount,
-  setAlert
 }) => {
   const [showModal, setShowModal] = useState(false);
-  console.log("setCouponDiscount coming from placeOrder");
-  console.log({ setCouponDiscount });
+  const { cartCount, cartTotal } = useCart();
+  const { total, discountedTotal } = cartTotal();
+  const count = cartCount();
+
   return (
     <div className={`order-summary`}>
       {showModal && (
         <ApplyCouponModal
           setShowModal={setShowModal}
           currencySymbol={currencySymbol}
-          discountedCartTotal={discountedCartTotal}
           setCouponDiscount={setCouponDiscount}
         />
       )}
@@ -44,16 +42,16 @@ export const PlaceOrder = ({
 
       <div className="price-details-container">
         <p className={`order-summary-heading`}>
-          {`Price details`} <span>{`(${cartCount} items)`}</span>
+          {`Price details`} <span>{`(${count} items)`}</span>
         </p>
         <p className={`order-summary-fields`}>
           {`Total MRP`}
-          <span>{`${currencySymbol} ${roundToTwoDigits(cartTotal)}`}</span>
+          <span>{`${currencySymbol} ${roundToTwoDigits(total)}`}</span>
         </p>
         <p className={`order-summary-fields text-money-saved`}>
           {`Discount on MRP`}
           <span>{`- ${currencySymbol} ${roundToTwoDigits(
-            cartTotal - discountedCartTotal
+            total - discountedTotal
           )}`}</span>
         </p>
         <div className={`discount-from-coupon`}>
@@ -77,20 +75,11 @@ export const PlaceOrder = ({
         <div className={`flex justify-between font-bold`}>
           <p className={`order-summary-heading`}>{`Total Amount`}</p>
           <span className={`total-amount-summary`}>
-            {`${currencySymbol} ${roundToTwoDigits(discountedCartTotal)}`}
+            {`${currencySymbol} ${roundToTwoDigits(discountedTotal)}`}
           </span>
         </div>
         <div className={`coupon-apply`}>
-          <button
-            className="btn btn-add-to-cart btn-lg"
-            onClick={() => {
-              setAlert({
-                show: true,
-                message: "Order Placed",
-                type: "success"
-              });
-            }}
-          >{`Place Order`}</button>
+          <button className="btn btn-add-to-cart btn-lg">{`Place Order`}</button>
         </div>
       </div>
     </div>

@@ -1,36 +1,16 @@
 import { imageAltText, authorName, Price } from "..";
 import { useLocalization } from "../../customHooks";
-import { translate, wishlistHandler, cartHandler } from "../../functions";
+import { translate } from "../../functions";
 import "../ProductCard/product-card-styles.css";
 import { DismissSvg } from "../../assets";
+import { useCurrencyConverter } from "../../customHooks";
+import { useWishlist } from "../../contexts/WishlistContext/WishlistContext";
 
-export const WishlistProductCard = ({
-  product,
-  userId,
-  setAlert,
-  currencySymbol,
-  selectedCurrencyRate,
-  userDispatch,
-  cartItemIds,
-  wishlistItemIds,
-}) => {
+export const WishlistProductCard = ({ product }) => {
+  const { image, title, author, price: mrp, offerPercentage } = product;
+  const { currencySymbol, selectedCurrencyRate } = useCurrencyConverter();
   const { language } = useLocalization();
-  const inWishlist = wishlistItemIds.includes(product._id);
-  const inCart = cartItemIds.includes(product._id);
-
-  const {
-    image,
-    title,
-    author,
-    price: mrp,
-    offerPercentage,
-    rating,
-    productType,
-    fastDelivery,
-    inStock,
-    category,
-    level,
-  } = product;
+  const { removeFromWishlist } = useWishlist();
 
   return (
     <article className={`product-card`}>
@@ -45,16 +25,7 @@ export const WishlistProductCard = ({
         />
         <span
           className="product-dismiss"
-          onClick={() =>
-            wishlistHandler(
-              "remove",
-              userId,
-              product._id,
-              setAlert,
-              userDispatch,
-              inWishlist
-            )
-          }
+          onClick={() => removeFromWishlist(product._id)}
         >
           <DismissSvg />
         </span>
@@ -70,16 +41,7 @@ export const WishlistProductCard = ({
         />
         <button
           className="btn-add-to-cart"
-          onClick={() =>
-            cartHandler(
-              "move",
-              userId,
-              product._id,
-              setAlert,
-              userDispatch,
-              inCart
-            )
-          }
+          onClick={() => console.log("move to cart")}
         >
           {translate("Move to Cart", language)}
         </button>

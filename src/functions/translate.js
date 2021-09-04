@@ -154,18 +154,3 @@ export const translate = (listItemName, language) => {
       break;
   }
 };
-
-// Adding...
-// Removing...
-// Moving...
-// DONE!
-
-// Added to Cart!
-// Moved to Cart!
-// Removed from Cart
-// Product already present in Cart
-
-// Added to Wishlist!
-// Moved to Wishlist!
-// Removed from Wishlist
-// Product already present in Wishlist

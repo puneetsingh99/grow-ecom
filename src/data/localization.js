@@ -2,33 +2,33 @@ export const currencies = [
   {
     country: "India",
     currency: "₹",
-    isoCurrencyCode: "INR"
+    isoCurrencyCode: "INR",
   },
   {
     country: "US",
     currency: "$",
-    isoCurrencyCode: "USD"
+    isoCurrencyCode: "USD",
   },
   {
     country: "UK",
     currency: "£",
-    isoCurrencyCode: "GBP"
+    isoCurrencyCode: "GBP",
   },
   {
     country: "Brazil",
     currency: "R$",
-    isoCurrencyCode: "BRL"
+    isoCurrencyCode: "BRL",
   },
   {
     country: "Japan",
     currency: "¥",
-    isoCurrencyCode: "JPY"
+    isoCurrencyCode: "JPY",
   },
   {
     country: "South Korea",
     currency: "₩",
-    isoCurrencyCode: "KRW"
-  }
+    isoCurrencyCode: "KRW",
+  },
 ];
 
 export const languages = [
@@ -86,8 +86,8 @@ export const languages = [
       movedToWishlist: "इच्छा सूची में ले जाया गया! 🥳",
       removedFromWishlist: "इच्छा सूची से निकाला गया! 👍",
       alreadyInWishlist: "उत्पाद इच्छा सूची में पहले से मौजूद है 😊",
-      cart: "कार्ट"
-    }
+      cart: "कार्ट",
+    },
   },
   {
     language: "English",
@@ -143,8 +143,8 @@ export const languages = [
       movedToWishlist: "Moved to Wishlist! 🥳",
       removedFromWishlist: "Removed from Wishlist 👍",
       alreadyInWishlist: "Product already present in Wishlist 😊",
-      cart: "Cart"
-    }
+      cart: "Cart",
+    },
   },
 
   {
@@ -201,8 +201,8 @@ export const languages = [
       movedToWishlist: "Añadida a la lista de deseos! 🥳",
       removedFromWishlist: "Eliminado de la lista de deseos 👍",
       alreadyInWishlist: "Eliminada de la lista de deseos 😊",
-      cart: "Carro"
-    }
+      cart: "Carro",
+    },
   },
   {
     language: "français",
@@ -258,8 +258,8 @@ export const languages = [
       movedToWishlist: "Ajouté à la liste de souhaits! 🥳",
       removedFromWishlist: "Supprimé de la liste de souhaits 👍",
       alreadyInWishlist: "Supprimé de la liste de souhaits 😊",
-      cart: "Chariot"
-    }
+      cart: "Chariot",
+    },
   },
   {
     language: "日本語",
@@ -315,8 +315,8 @@ export const languages = [
       movedToWishlist: "ウィッシュリストに追加されました！ 🥳",
       removedFromWishlist: "ウィッシュリストから削除されました 👍",
       alreadyInWishlist: "ウィッシュリストから削除 😊",
-      cart: "カート"
-    }
+      cart: "カート",
+    },
   },
   {
     language: "한국어",
@@ -372,8 +372,8 @@ export const languages = [
       movedToWishlist: "위시리스트에 추가되었습니다! 🥳",
       removedFromWishlist: "위시리스트에서 삭제됨 👍",
       alreadyInWishlist: "위시리스트에서 제거됨 😊",
-      cart: "카트"
-    }
+      cart: "카트",
+    },
   },
   {
     language: "தமிழ்",
@@ -429,8 +429,8 @@ export const languages = [
       movedToWishlist: "விருப்பப்பட்டியலில் சேர்க்கப்பட்டது! 🥳",
       removedFromWishlist: "விருப்பப்பட்டியலில் இருந்து அகற்றப்பட்டது 👍",
       alreadyInWishlist: "விருப்பப்பட்டியலில் இருந்து அகற்றப்பட்டது 😊",
-      cart: "வண்டி"
-    }
+      cart: "வண்டி",
+    },
   },
   {
     language: "తెలుగు",
@@ -486,8 +486,8 @@ export const languages = [
       movedToWishlist: "కోరికల జాబితాకు జోడించబడింది! 🥳",
       removedFromWishlist: "కోరికల జాబితా నుండి తొలగించబడింది 👍",
       alreadyInWishlist: "కోరికల జాబితా నుండి తొలగించబడింది 😊",
-      cart: "బండి"
-    }
+      cart: "బండి",
+    },
   },
   {
     language: "മലയാളം",
@@ -543,7 +543,7 @@ export const languages = [
       movedToWishlist: "വിഷ്‌ലിസ്റ്റിലേക്ക് ചേർത്തു! 🥳",
       removedFromWishlist: "ആഗ്രഹപ്പട്ടികയിൽ നിന്ന് നീക്കംചെയ്‌തു 👍",
       alreadyInWishlist: "വിഷ്‌ലിസ്റ്റിൽ നിന്ന് നീക്കംചെയ്‌തു 😊",
-      cart: "കാർട്ട്"
-    }
-  }
+      cart: "കാർട്ട്",
+    },
+  },
 ];

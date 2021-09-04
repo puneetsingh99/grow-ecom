@@ -8,20 +8,17 @@ export const useLocalization = () => {
     language,
     localizationDispatch,
     showCountryList,
-    showLanguageList
+    showLanguageList,
   } = useContext(LocalizationContext);
 
   const translatedStrings = getTranslatedStrings(language);
 
-  // const strings = translatedString(language);
   return {
     location,
     language,
     translatedStrings,
     localizationDispatch,
     showCountryList,
-    showLanguageList
+    showLanguageList,
   };
 };
-
-// provide current currency, location and language

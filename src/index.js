@@ -6,6 +6,9 @@ import {
   HamburgerProvider,
   AuthProvider,
   ProductProvider,
+  WishlistProvider,
+  CartProvider,
+  UserProvider,
 } from "./contexts";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -17,11 +20,17 @@ ReactDOM.render(
       <AuthProvider>
         <ECommerceProvider>
           <ProductProvider>
-            <LocalizationProvider>
-              <HamburgerProvider>
-                <App />
-              </HamburgerProvider>
-            </LocalizationProvider>
+            <UserProvider>
+              <WishlistProvider>
+                <CartProvider>
+                  <LocalizationProvider>
+                    <HamburgerProvider>
+                      <App />
+                    </HamburgerProvider>
+                  </LocalizationProvider>
+                </CartProvider>
+              </WishlistProvider>
+            </UserProvider>
           </ProductProvider>
         </ECommerceProvider>
       </AuthProvider>

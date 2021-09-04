@@ -4,14 +4,12 @@ import { useLocalization } from "./";
 import { currencyRateReducer } from "../functions";
 
 export const useCurrencyConverter = () => {
-  const [
-    { allCurrencyRates, currencySymbol, selectedCurrencyRate },
-    dispatch
-  ] = useReducer(currencyRateReducer, {
-    allCurrencyRates: [],
-    currencySymbol: "",
-    selectedCurrencyRate: 1
-  });
+  const [{ allCurrencyRates, currencySymbol, selectedCurrencyRate }, dispatch] =
+    useReducer(currencyRateReducer, {
+      allCurrencyRates: [],
+      currencySymbol: "",
+      selectedCurrencyRate: 1,
+    });
   const { location } = useLocalization();
 
   const url = `https://api.exchangerate.host/latest?base=INR`;
@@ -47,21 +45,20 @@ export const useCurrencyConverter = () => {
       const newPayload = {
         allCurrencyRates: response.data.rates,
         currencySymbol: symbol,
-        selectedCurrencyRate: rate
+        selectedCurrencyRate: rate,
       };
 
       dispatch({ type: "SET_CURRENCY", payload: newPayload });
     } catch (error) {
       console.log(error);
-      // Add an alert over here
     }
   };
 
-  useEffect(() => getExchangeRates(), [location]);
+  // useEffect(() => getExchangeRates(), []);
 
   return {
     allCurrencyRates,
     currencySymbol,
-    selectedCurrencyRate
+    selectedCurrencyRate,
   };
 };

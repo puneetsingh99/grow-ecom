@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CrossSvg } from "../../assets";
+import { useCart } from "../../contexts/CartContext/CartContext";
 import { roundToTwoDigits } from "../../functions";
 import { applyCouponCode } from "./applyCouponCode";
 
@@ -7,11 +8,11 @@ export const ApplyCouponModal = ({
   showModal,
   setShowModal,
   currencySymbol,
-  discountedCartTotal,
-  setCouponDiscount
+  setCouponDiscount,
 }) => {
   const [couponCode, setCouponCode] = useState("");
-  console.log("Coming from applycouponModal", { setCouponDiscount });
+  const { cartTotal } = useCart();
+  const { discountedTotal } = cartTotal();
 
   return (
     <div
@@ -56,7 +57,7 @@ export const ApplyCouponModal = ({
             className={`apply-coupon-code modal-apply-coupon-heading border-none`}
           >
             <p>{`${`Save`} ${currencySymbol} ${roundToTwoDigits(
-              discountedCartTotal
+              discountedTotal
             )}`}</p>
             <button
               className={`btn-apply-coupon btn-apply-coupon-lg`}

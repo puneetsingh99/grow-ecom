@@ -42,7 +42,6 @@ export const ECommerceProvider = ({ children }) => {
     search
   );
 
-  // Fetching user
   const {
     user,
     errorMessage: fetchUserErrorMessage,

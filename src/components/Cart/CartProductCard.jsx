@@ -7,6 +7,7 @@ import "../Cart/cart-styles.css";
 import { QuantitySelector } from "./QuantitySelector";
 import { QuantitySelectorModal } from "./QuantitySelectorModal";
 import { useState } from "react";
+import { useCart } from "../../contexts/CartContext/CartContext";
 
 export const CartProductCard = ({
   product,
@@ -17,27 +18,16 @@ export const CartProductCard = ({
   userDispatch,
   cartItemIds,
   wishlistItemIds,
-  qty,
-  alert,
 }) => {
   const { language } = useLocalization();
-  const inWishlist = wishlistItemIds.includes(product._id);
-  const inCart = cartItemIds.includes(product._id);
+  // const inWishlist = wishlistItemIds.includes(product._id);
+  // const inCart = cartItemIds.includes(product._id);
   const [showQtyModal, setShowQtyModal] = useState(false);
 
-  const {
-    image,
-    title,
-    author,
-    price: mrp,
-    offerPercentage,
-    rating,
-    productType,
-    fastDelivery,
-    inStock,
-    category,
-    level,
-  } = product;
+  const { removeFromCart } = useCart();
+
+  const { image, title, author, price: mrp, offerPercentage } = product.product;
+  const { qty } = product;
 
   return (
     <article className={`cart-product-card`}>
@@ -95,21 +85,11 @@ export const CartProductCard = ({
         </div>
       </div>
 
-      {/* btn container */}
       <div className="cart-btn-container">
         <div className="cart-btn-remove__wrapper">
           <button
             className="cart-btn cart-btn--remove"
-            onClick={() => {
-              cartHandler(
-                "remove",
-                userId,
-                product._id,
-                setAlert,
-                userDispatch,
-                inCart
-              );
-            }}
+            onClick={() => removeFromCart(product.product._id)}
           >
             Remove
           </button>
@@ -117,16 +97,7 @@ export const CartProductCard = ({
         <div className="cart-btn-move-to-wishlist__wrapper">
           <button
             className="cart-btn cart-btn--move-to-wishlist"
-            onClick={() =>
-              wishlistHandler(
-                "move",
-                userId,
-                product._id,
-                setAlert,
-                userDispatch,
-                inCart
-              )
-            }
+            onClick={() => console.log("move to wishlist")}
           >
             Move to wishlist
           </button>

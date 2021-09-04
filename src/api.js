@@ -1,12 +1,15 @@
-// export const API_ROOT = `http://localhost:5000`;
+export const API_ROOT = `http://localhost:5000`;
 
-export const API_ROOT = `https://radiant-depths-11487.herokuapp.com`;
+// export const API_ROOT = `https://radiant-depths-11487.herokuapp.com`;
 
 export const API_ALL_PRODUCTS = `${API_ROOT}/products`;
 export const API_LOGIN = `${API_ROOT}/login`;
 export const API_SIGNUP = `${API_ROOT}/users`;
 
 export const apiGetUser = (userId) => `${API_ROOT}/users/${userId}`;
+export const apiGetCart = (userId) => `${API_ROOT}/users/${userId}/cart`;
+export const apiGetWishlist = (userId) =>
+  `${API_ROOT}/users/${userId}/wishlist`;
 
 export const apiAddToWishlist = (userId, productId) =>
   `${API_ROOT}/users/${userId}/wishlist/${productId}`;

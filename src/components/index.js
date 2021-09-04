@@ -17,7 +17,6 @@ export { ProductListingPage } from "./ProductListingPage/ProductListingPage";
 export { Sidebar } from "./Sidebar/Sidebar";
 export { SidebarMobile } from "./Sidebar/SidebarMobile";
 export { SidebarList } from "./Sidebar/SidebarList";
-export { ProductListingPageHeader } from "./Header/ProductListingPageHeader";
 export { FilterBadge } from "./FilterBadge/FilterBadge";
 export { FilterBadgeList } from "./FilterBadge/FilterBadgeList";
 export { Sort } from "./Sort/Sort";

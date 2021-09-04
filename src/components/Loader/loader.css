@@ -4,3 +4,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.loader {
+  border: solid 5px black;
+  width: 100%;
+  margin: auto;
+}
