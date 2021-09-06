@@ -6,6 +6,8 @@ import { DismissSvg } from "../../assets";
 import { useCurrencyConverter } from "../../customHooks";
 import { useWishlist } from "../../contexts/WishlistContext/WishlistContext";
 import { useMoveToCart } from "./useMoveToCart";
+import { Link } from "react-router-dom";
+import { goToProductRoute } from "../../routes";
 
 export const WishlistProductCard = ({ product }) => {
   const { image, title, author, price: mrp, offerPercentage } = product;
@@ -19,13 +21,15 @@ export const WishlistProductCard = ({ product }) => {
       <div
         className={`product-card__img-container wishlist-product-card__img-container`}
       >
-        <img
-          src={image}
-          alt={imageAltText(title, author)}
-          className={`product-card__img  responsive-img wishlist-product-card__img`}
-          loading="lazy"
-          title={title}
-        />
+        <Link className={`text-link`} to={goToProductRoute(product._id)}>
+          <img
+            src={image}
+            alt={imageAltText(title, author)}
+            className={`product-card__img  responsive-img wishlist-product-card__img`}
+            loading="lazy"
+            title={title}
+          />
+        </Link>
         <span
           className="product-dismiss"
           onClick={() => removeFromWishlist(product._id)}
@@ -35,9 +39,11 @@ export const WishlistProductCard = ({ product }) => {
         </span>
       </div>
       <div className="product-card__details">
-        <h1 title={title} className={`product-title`}>
-          {title}
-        </h1>
+        <Link className={`text-link`} to={goToProductRoute(product._id)}>
+          <h1 title={title} className={`product-title`}>
+            {title}
+          </h1>
+        </Link>
         <p className={`product-creator`}>{authorName(author)}</p>
         <Price
           mrp={mrp}

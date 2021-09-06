@@ -11,6 +11,8 @@ export const apiGetCart = (userId) => `${API_ROOT}/users/${userId}/cart`;
 export const apiGetWishlist = (userId) =>
   `${API_ROOT}/users/${userId}/wishlist`;
 
+export const apiGetProduct = (productId) => `${API_ROOT}/products/${productId}`;
+
 export const apiAddToWishlist = (userId, productId) =>
   `${API_ROOT}/users/${userId}/wishlist/${productId}`;
 

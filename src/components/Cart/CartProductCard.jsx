@@ -1,14 +1,14 @@
 import { imageAltText, authorName, Price } from "..";
 import { useLocalization } from "../../customHooks";
-import { translate, wishlistHandler, cartHandler } from "../../functions";
 import "../ProductCard/product-card-styles.css";
 import { DismissSvg, DropDownSvg } from "../../assets";
 import "../Cart/cart-styles.css";
-import { QuantitySelector } from "./QuantitySelector";
 import { QuantitySelectorModal } from "./QuantitySelectorModal";
 import { useState } from "react";
 import { useCart } from "../../contexts/CartContext/CartContext";
 import { useMoveToWishlist } from "./hooks/useMoveToWishlist";
+import { goToProductRoute } from "../../routes";
+import { Link } from "react-router-dom";
 
 export const CartProductCard = ({ product }) => {
   const { language } = useLocalization();
@@ -26,16 +26,26 @@ export const CartProductCard = ({ product }) => {
   return (
     <article className={`cart-product-card`}>
       <div className={`cart-product-card__info`}>
-        <div className={`cart-product-card__img-container`}>
-          <img
-            src={image}
-            alt={imageAltText(title, author)}
-            className={`cart-product-card__img`}
-            loading="lazy"
-          />
-        </div>
+        <Link
+          className={`text-link`}
+          to={goToProductRoute(product.product._id)}
+        >
+          <div className={`cart-product-card__img-container`}>
+            <img
+              src={image}
+              alt={imageAltText(title, author)}
+              className={`cart-product-card__img`}
+              loading="lazy"
+            />
+          </div>
+        </Link>
         <div className={`cart-product-card__details`}>
-          <h1 className={`product-title--cart`}>{title}</h1>
+          <Link
+            className={`text-link`}
+            to={goToProductRoute(product.product._id)}
+          >
+            <h1 className={`product-title--cart`}>{title}</h1>
+          </Link>
           <p className={`product-creator product-creator--cart mb-4`}>
             {authorName(author)}
           </p>
@@ -52,7 +62,7 @@ export const CartProductCard = ({ product }) => {
             <p
               className={`cart-product-qty-indicator flex align-items justify-between`}
             >
-              {`Qty ${qty}`}{" "}
+              {`Qty ${qty}`}
               <span className={`flex align-items drop-down-svg`}>
                 <DropDownSvg />
               </span>

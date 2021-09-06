@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useWishlist } from "../../contexts/WishlistContext/WishlistContext";
 import { useCart } from "../../contexts/CartContext/CartContext";
+import { goToProductRoute } from "../../routes";
 
 export const ProductCard = ({ product }) => {
   const { language } = useLocalization();
@@ -17,7 +18,7 @@ export const ProductCard = ({ product }) => {
 
   return (
     <article className={`product-card`}>
-      <Link className={`text-link`} to={`product/${product._id}`}>
+      <Link className={`text-link`} to={goToProductRoute(product._id)}>
         <div className={`product-card__img-container`}>
           <img
             src={image}
@@ -56,7 +57,7 @@ export const ProductCard = ({ product }) => {
             </span>
           </div>
         </div>
-        <Link className={`text-link`} to={`product/${product._id}`}>
+        <Link className={`text-link`} to={goToProductRoute(product._id)}>
           <h1 className={`product-title`} title={title}>
             {title}
           </h1>

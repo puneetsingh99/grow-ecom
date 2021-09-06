@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { useAuth } from "../AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { ROUTE_LOGIN } from "../../routes";
 import { cartReducer } from "./cartReducer";
 import { getCart } from "./getCart";
@@ -23,8 +23,8 @@ const initialState = {
 };
 
 export const CartProvider = ({ children }) => {
-  const navigate = useNavigate();
   const { isUserLoggedIn, userId } = useAuth();
+  const location = useLocation();
 
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
 
@@ -37,7 +37,7 @@ export const CartProvider = ({ children }) => {
 
   const onAddToCartClicked = async (product) => {
     if (!isUserLoggedIn) {
-      return navigate(ROUTE_LOGIN);
+      return <Navigate state={{ from: location.pathname }} to={ROUTE_LOGIN} />;
     }
 
     inCart(product._id)
@@ -102,13 +102,11 @@ export const CartProvider = ({ children }) => {
 
   const onSelectQty = async (productId, qty) => {
     try {
-      console.log({ productId, qty });
       const { data } = await toast.promise(
         axios.post(apiUpdateQty(userId, productId, qty)),
         updateQtyStates,
         toastConfig
       );
-      console.log(data);
       if (data.updatedCart) {
         cartDispatch({ type: "UPDATE_QTY", payload: { productId, qty } });
       }
@@ -118,7 +116,14 @@ export const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (userId) {
+    if (!isUserLoggedIn) {
+      cartDispatch({
+        type: "SET_CART",
+        payload: [],
+      });
+    }
+
+    if (isUserLoggedIn) {
       (async function () {
         try {
           cartDispatch({ type: "SET_STATUS", payload: "loading" });
@@ -140,7 +145,7 @@ export const CartProvider = ({ children }) => {
         }
       })();
     }
-  }, [userId]);
+  }, [userId, isUserLoggedIn]);
 
   const context = {
     cartState,

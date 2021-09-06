@@ -1,13 +1,15 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+import { apiGetProduct } from "../api";
+import { toastConfig } from "../utils";
 
-export const getProduct = async (productId, setProduct, setAlert) => {
-  const getProductUrl = `https://e-commerce-backend.puneetsingh2.repl.co/products/${productId}`;
+export const getProduct = async (productId, setProduct) => {
   try {
-    const { data } = await axios.get(getProductUrl);
+    const { data } = await axios.get(apiGetProduct(productId));
     console.log(data);
     setProduct(data.product);
   } catch (error) {
     console.log(error.message);
-    // implement an alert in the final version
+    toast("Could not retrieve product", toastConfig);
   }
 };

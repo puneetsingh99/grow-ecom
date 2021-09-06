@@ -1,68 +1,66 @@
 import { Navbar, Price } from "../";
+import { useEffect } from "react";
+import { getProduct } from "../../functions";
 import { imageAltText, authorName } from "../";
 import { StarSvg } from "../../assets";
-import { useECommerce, useGetProduct } from "../../customHooks";
 import "../Cart/cart-styles.css";
 import "./product-detail-styles.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
 import { useAuth } from "../../contexts";
+import { useCart } from "../../contexts/CartContext/CartContext";
+import { useWishlist } from "../../contexts/WishlistContext/WishlistContext";
 
 export const ProductDetail = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
-  useGetProduct(productId, setProduct);
 
-  const { userId } = useAuth();
+  useEffect(() => {
+    getProduct(productId, setProduct);
+  }, []);
 
-  const { userDispatch, inWishlist, inCart } = useECommerce();
-
-  const {
-    image,
-    author,
-    title,
-    rating,
-    price: mrp,
-    offerPercentage,
-    description,
-  } = product;
-
-  const [alert, setAlert] = useState({ show: false, message: "", type: "" });
+  const { onAddToCartClicked } = useCart();
+  const { onAddToWishlistClicked } = useWishlist();
 
   return (
     <main className={`product-description`}>
       <Navbar />
-      {Object.keys(product).length === 0 && <Loader />}
-      {Object.keys(product).length > 0 && (
+      {product && Object.keys(product).length === 0 && <Loader />}
+      {product && Object.keys(product).length > 0 && (
         <main className={`product-detail-page`}>
           <article className={`product-detail-card`}>
             <div className={`product__info`}>
               <div className={`product__img__container-mobile`}>
                 <div className={`product__img-container`}>
                   <img
-                    src={image}
-                    alt={imageAltText(title, author)}
+                    src={product.image}
+                    alt={imageAltText(product.title, product.author)}
                     className={`product__img`}
                   />
                 </div>
               </div>
               <div className={`product__details`}>
-                <h1 className={`product__details-title`}>{title}</h1>
+                <h1 className={`product__details-title`}>{product.title}</h1>
                 <p className={`product__details-creator`}>
-                  {authorName(author)}
+                  {authorName(product.author)}
                 </p>
                 <div className={`flex product-price`}>
-                  <Price mrp={mrp} offerPercentage={offerPercentage} />
+                  <Price
+                    mrp={product.price}
+                    offerPercentage={product.offerPercentage}
+                  />
                   <p className={`ml-2 text-red-400 font-medium`}>
                     {`${
-                      offerPercentage !== 0 ? `${offerPercentage}% off` : ""
+                      product.offerPercentage !== 0
+                        ? `${product.offerPercentage}% off`
+                        : ""
                     }`}
                   </p>
                 </div>
                 <div className="flex justify-between items-center w-8 mb-4 rating-container">
                   <span className="mr-1 flex justify-between items-center font-bold text-gray-800">
-                    {rating}
+                    {product.rating}
                   </span>
                   <span className="text-yellow-400 self-center">
                     <StarSvg />
@@ -71,39 +69,21 @@ export const ProductDetail = () => {
                 <div className={`mb-8 product__details-btn-container`}>
                   <button
                     className="btn-add-to-cart product__details-btn-add-to-wishlist"
-                    onClick={() =>
-                      wishlistHandler(
-                        "add",
-                        userId,
-                        product._id,
-                        setAlert,
-                        userDispatch,
-                        inWishlist
-                      )
-                    }
+                    onClick={() => onAddToWishlistClicked(product)}
                   >
                     Add to Wishlist
                   </button>
 
                   <button
                     className="btn-add-to-cart product__details-btn-add-to-cart"
-                    onClick={() =>
-                      cartHandler(
-                        "add",
-                        userId,
-                        product._id,
-                        setAlert,
-                        userDispatch,
-                        inCart
-                      )
-                    }
+                    onClick={() => onAddToCartClicked(product)}
                   >
                     Add to Cart
                   </button>
                 </div>
                 <div className={`product-description-container`}>
-                  <h2>Description</h2>
-                  <p className={`product-description`}>{description}</p>
+                  <h2>About this book</h2>
+                  <p className={`product-description`}>{product.description}</p>
                 </div>
               </div>
             </div>
