@@ -1,18 +1,37 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CrossSvg } from "../../assets";
 import { useCart } from "../../contexts/CartContext/CartContext";
 import { roundToTwoDigits } from "../../functions";
-import { applyCouponCode } from "./applyCouponCode";
+import { toast } from "react-toastify";
+import { toastConfig } from "../../utils";
 
 export const ApplyCouponModal = ({
-  showModal,
   setShowModal,
   currencySymbol,
   setCouponDiscount,
+  setIsCouponApplied,
 }) => {
   const [couponCode, setCouponCode] = useState("");
   const { cartTotal } = useCart();
   const { discountedTotal } = cartTotal();
+
+  const onApplyCouponClicked = () => {
+    const couponDiscountPercent = couponCode === "WELCOME25" ? 25 : 0;
+
+    if (couponDiscountPercent === 0) {
+      if (!couponCode) {
+        return toast.warn("Please enter a coupon", toastConfig);
+      }
+      toast.warn("Invalid coupon", toastConfig);
+    } else {
+      setIsCouponApplied(true);
+      setShowModal(false);
+      toast.success("Coupon applied", toastConfig);
+    }
+
+    setCouponDiscount(couponDiscountPercent);
+    setCouponCode("");
+  };
 
   return (
     <div
@@ -37,7 +56,7 @@ export const ApplyCouponModal = ({
               type="text"
               name="enter-coupon"
               id="enter-coupon"
-              className={`text-input`}
+              className={`text-input py-2`}
               placeholder={`Enter coupon code`}
               onChange={(e) => setCouponCode(() => e.target.value)}
             />
@@ -57,11 +76,11 @@ export const ApplyCouponModal = ({
             className={`apply-coupon-code modal-apply-coupon-heading border-none`}
           >
             <p>{`${`Save`} ${currencySymbol} ${roundToTwoDigits(
-              discountedTotal
+              discountedTotal - discountedTotal * 0.75
             )}`}</p>
             <button
               className={`btn-apply-coupon btn-apply-coupon-lg`}
-              onClick={() => applyCouponCode(couponCode)}
+              onClick={onApplyCouponClicked}
             >{`Apply Coupon`}</button>
           </div>
         </div>

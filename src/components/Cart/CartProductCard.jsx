@@ -21,8 +21,6 @@ export const CartProductCard = ({ product }) => {
   const { onMoveToWishlistClicked } = useMoveToWishlist();
   const qtySelectorProps = { showQtyModal, setShowQtyModal, qty };
 
-  console.log({ productId: product.product._id, title });
-
   return (
     <article className={`cart-product-card`}>
       <div className={`cart-product-card__info`}>

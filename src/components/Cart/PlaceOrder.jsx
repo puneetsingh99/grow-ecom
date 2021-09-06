@@ -3,16 +3,22 @@ import { ApplyCouponModal } from "../";
 import { TagSvg } from "../../assets";
 import { roundToTwoDigits } from "../../functions";
 import { useCart } from "../../contexts/CartContext/CartContext";
+import { useCurrencyConverter } from "../../customHooks";
 
-export const PlaceOrder = ({
-  currencySymbol,
-  isCouponApplied,
-  setCouponDiscount,
-}) => {
+export const PlaceOrder = (props) => {
+  const {
+    isCouponApplied,
+    setIsCouponApplied,
+    couponDiscount,
+    setCouponDiscount,
+  } = props;
   const [showModal, setShowModal] = useState(false);
   const { cartCount, cartTotal } = useCart();
   const { total, discountedTotal } = cartTotal();
   const count = cartCount();
+  const { currencySymbol, selectedCurrencyRate } = useCurrencyConverter();
+
+  const orderTotal = discountedTotal * (1 - couponDiscount / 100);
 
   return (
     <div className={`order-summary`}>
@@ -21,6 +27,7 @@ export const PlaceOrder = ({
           setShowModal={setShowModal}
           currencySymbol={currencySymbol}
           setCouponDiscount={setCouponDiscount}
+          setIsCouponApplied={setIsCouponApplied}
         />
       )}
 
@@ -57,7 +64,7 @@ export const PlaceOrder = ({
         <div className={`discount-from-coupon`}>
           <p>{`Coupon Discount`} </p>
           {isCouponApplied ? (
-            <p>{`coupon applied`}</p>
+            <p>{`${couponDiscount}%`}</p>
           ) : (
             <p
               className={`text-apply-coupon cursor-pointer text-dark`}
@@ -75,7 +82,7 @@ export const PlaceOrder = ({
         <div className={`flex justify-between font-bold`}>
           <p className={`order-summary-heading`}>{`Total Amount`}</p>
           <span className={`total-amount-summary`}>
-            {`${currencySymbol} ${roundToTwoDigits(discountedTotal)}`}
+            {`${currencySymbol} ${roundToTwoDigits(orderTotal)}`}
           </span>
         </div>
         <div className={`coupon-apply`}>

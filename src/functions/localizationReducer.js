@@ -5,7 +5,7 @@ export const localizationReducer = (state, action) => {
         ...state,
         language: action.payload,
         showLanguageList: !state.showLanguageList,
-        showCountryList: false
+        showCountryList: false,
       };
 
     case "SET_LOCATION":
@@ -13,22 +13,21 @@ export const localizationReducer = (state, action) => {
         ...state,
         location: action.payload,
         showCountryList: !state.showCountryList,
-        showLanguageList: false
+        showLanguageList: false,
       };
 
     case "TOGGLE_COUNTRYLIST":
       return {
         ...state,
         showCountryList: !state.showCountryList,
-        showLanguageList: false
+        showLanguageList: false,
       };
 
     case "TOGGLE_LANGUAGELIST":
-      console.log("Puneet billa");
       return {
         ...state,
         showLanguageList: !state.showLanguageList,
-        showCountryList: false
+        showCountryList: false,
       };
 
     default:

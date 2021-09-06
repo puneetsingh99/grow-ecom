@@ -49,9 +49,6 @@
   margin-bottom: 0.5rem;
 }
 
-.product-detail-cart {
-}
-
 .product-description-container h2 {
   font-size: 1.25rem;
   font-weight: 500;
@@ -80,6 +77,7 @@
   .product__img__container-mobile {
     display: flex;
     justify-content: center;
+    background-color: var(--light-gray);
     margin-bottom: 1rem;
   }
 
