@@ -1,16 +1,9 @@
 import "./cart-styles.css";
-import { cartHandler } from "../../functions";
-import { AlertHandler } from "../";
+import { useCart } from "../../contexts/CartContext/CartContext";
+import { v4 as uuidv4 } from "uuid";
 
-export const QuantitySelector = ({
-  qty,
-  userId,
-  productId,
-  setAlert,
-  userDispatch,
-  inCart,
-  setShowQtyModal
-}) => {
+export const QuantitySelector = ({ qty, productId, setShowQtyModal }) => {
+  const { onSelectQty } = useCart();
   const avaialableQuantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <div className={`quantity-selector`} onClick={(e) => e.stopPropagation()}>
@@ -20,20 +13,11 @@ export const QuantitySelector = ({
       <ul className={`available-quantities`}>
         {avaialableQuantities.map((qtyNum) => (
           <li
+            key={uuidv4()}
             className={`available-quantities__quantity ${
               qtyNum === qty && `highlight-qty`
             }`}
-            onClick={() =>
-              cartHandler(
-                "updateQty",
-                userId,
-                productId,
-                setAlert,
-                userDispatch,
-                inCart,
-                qtyNum
-              )
-            }
+            onClick={() => onSelectQty(productId, qtyNum)}
           >
             <p> {qtyNum}</p>
           </li>
@@ -47,7 +31,6 @@ export const QuantitySelector = ({
           }}
         >{`Done`}</button>
       </div>
-      {alert.show && <AlertHandler {...alert} setAlert={setAlert} />}
     </div>
   );
 };

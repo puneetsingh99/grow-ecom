@@ -6,9 +6,13 @@ import { cartReducer } from "./cartReducer";
 import { getCart } from "./getCart";
 import { toastConfig } from "../../utils";
 import axios from "axios";
-import { apiAddToCart, apiRemoveFromCart, apiMoveToCart } from "../../api";
+import { apiAddToCart, apiRemoveFromCart, apiUpdateQty } from "../../api";
 import { toast } from "react-toastify";
-import { addToCartStates, removeFromCartStates } from "./constants";
+import {
+  addToCartStates,
+  removeFromCartStates,
+  updateQtyStates,
+} from "./constants";
 
 export const CartContext = createContext(null);
 
@@ -96,6 +100,23 @@ export const CartProvider = ({ children }) => {
     return length;
   };
 
+  const onSelectQty = async (productId, qty) => {
+    try {
+      console.log({ productId, qty });
+      const { data } = await toast.promise(
+        axios.post(apiUpdateQty(userId, productId, qty)),
+        updateQtyStates,
+        toastConfig
+      );
+      console.log(data);
+      if (data.updatedCart) {
+        cartDispatch({ type: "UPDATE_QTY", payload: { productId, qty } });
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     if (userId) {
       (async function () {
@@ -130,6 +151,7 @@ export const CartProvider = ({ children }) => {
     inCart,
     cartTotal,
     cartCount,
+    onSelectQty,
   };
 
   return (

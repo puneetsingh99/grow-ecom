@@ -1,19 +1,8 @@
 import { QuantitySelector } from "./QuantitySelector";
 import "./cart-styles.css";
-import { AlertHandler } from "../";
 
-export const QuantitySelectorModal = ({
-  showQtyModal,
-  setShowQtyModal,
-  qty,
-  operation,
-  userId,
-  productId,
-  setAlert,
-  alert,
-  userDispatch,
-  inCart
-}) => {
+export const QuantitySelectorModal = (props) => {
+  const { setShowQtyModal } = props;
   return (
     <div
       className={`modal-container`}
@@ -22,16 +11,7 @@ export const QuantitySelectorModal = ({
       }}
     >
       <div className="modal">
-        <QuantitySelector
-          qty={qty}
-          showQtyModal={showQtyModal}
-          setShowQtyModal={setShowQtyModal}
-          userId={userId}
-          productId={productId}
-          setAlert={setAlert}
-          userDispatch={userDispatch}
-          inCart={inCart}
-        />
+        <QuantitySelector {...props} />
       </div>
     </div>
   );

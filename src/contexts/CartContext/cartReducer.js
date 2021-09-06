@@ -21,6 +21,18 @@ const removeFromCart = (state, productId) => {
   return updatedCartState;
 };
 
+const updateQty = (state, payload) => {
+  const { productId, qty } = payload;
+  const updatedState = state.cart?.map((product) => {
+    if (product.product._id === productId) {
+      product.qty = qty;
+    }
+    return product;
+  });
+
+  return { ...state, cart: updatedState };
+};
+
 export const cartReducer = (state, action) => {
   const { type, payload } = action;
 
@@ -28,6 +40,7 @@ export const cartReducer = (state, action) => {
     ADD_TO_CART: () => addToCart(state, payload),
     REMOVE_FROM_CART: () => removeFromCart(state, payload),
     MOVE_TO_CART: () => moveToCart(wishlist, state, payload),
+    UPDATE_QTY: () => updateQty(state, payload),
     SET_CART: () => ({
       status: "succeeded",
       cart: payload,

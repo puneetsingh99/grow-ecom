@@ -24,16 +24,20 @@ export const WishlistProductCard = ({ product }) => {
           alt={imageAltText(title, author)}
           className={`product-card__img  responsive-img wishlist-product-card__img`}
           loading="lazy"
+          title={title}
         />
         <span
           className="product-dismiss"
           onClick={() => removeFromWishlist(product._id)}
+          title={"Remove from Wishlist"}
         >
           <DismissSvg />
         </span>
       </div>
       <div className="product-card__details">
-        <h1 className={`product-title`}>{title}</h1>
+        <h1 title={title} className={`product-title`}>
+          {title}
+        </h1>
         <p className={`product-creator`}>{authorName(author)}</p>
         <Price
           mrp={mrp}

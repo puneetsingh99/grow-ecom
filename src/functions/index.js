@@ -18,7 +18,5 @@ export { moveToCart } from "./moveToCart";
 export { showAlert } from "./showAlert";
 export { currencyRateReducer } from "./currencyRateReducer";
 export { wishlistHandler } from "./wishlistHandler";
-export { cartHandler } from "./cartHandler";
-export { updateQty } from "./updateQty";
 export { roundToTwoDigits } from "./roundToTwoDigits";
 export { getProduct } from "./getProduct";

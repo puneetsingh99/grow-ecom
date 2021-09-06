@@ -12,8 +12,6 @@ import { useMoveToWishlist } from "./hooks/useMoveToWishlist";
 
 export const CartProductCard = ({ product }) => {
   const { language } = useLocalization();
-  // const inWishlist = wishlistItemIds.includes(product._id);
-  // const inCart = cartItemIds.includes(product._id);
   const [showQtyModal, setShowQtyModal] = useState(false);
 
   const { removeFromCart } = useCart();
@@ -21,6 +19,9 @@ export const CartProductCard = ({ product }) => {
   const { image, title, author, price: mrp, offerPercentage } = product.product;
   const { qty } = product;
   const { onMoveToWishlistClicked } = useMoveToWishlist();
+  const qtySelectorProps = { showQtyModal, setShowQtyModal, qty };
+
+  console.log({ productId: product.product._id, title });
 
   return (
     <article className={`cart-product-card`}>
@@ -39,12 +40,7 @@ export const CartProductCard = ({ product }) => {
             {authorName(author)}
           </p>
           <div className={`flex`}>
-            <Price
-              mrp={mrp}
-              offerPercentage={offerPercentage}
-              currencySymbol={"R"}
-              selectedCurrencyRate={1}
-            />
+            <Price mrp={mrp} offerPercentage={offerPercentage} />
             <p className={`ml-2 text-red-400 font-medium`}>
               {`${offerPercentage !== 0 ? `${offerPercentage}% off` : ""}`}
             </p>
@@ -64,15 +60,8 @@ export const CartProductCard = ({ product }) => {
           </div>
           {showQtyModal && (
             <QuantitySelectorModal
-              showQtyModal={showQtyModal}
-              setShowQtyModal={setShowQtyModal}
-              userId={userId}
-              qty={qty}
-              productId={product._id}
-              setAlert={setAlert}
-              alert={alert}
-              userDispatch={userDispatch}
-              inCart={inCart}
+              {...qtySelectorProps}
+              productId={product.product._id}
             />
           )}
         </div>

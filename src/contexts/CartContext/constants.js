@@ -10,6 +10,12 @@ export const addToCartStates = {
   error: "Could not add to cart",
 };
 
+export const updateQtyStates = {
+  pending: "Updating qty...",
+  success: "Quantity updated",
+  error: "Could not update the quantity",
+};
+
 export const moveToWishlistStates = {
   pending: "Moving to wishlist...",
   success: "Moved to wishlist",

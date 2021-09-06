@@ -7,4 +7,5 @@ export const toastConfig = {
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
+  backgroundColor: "green",
 };

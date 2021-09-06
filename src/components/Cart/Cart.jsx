@@ -30,8 +30,6 @@ export const Cart = () => {
 
   const count = cartCount();
 
-  console.log({ status, cart, error });
-
   const { currencySymbol, selectedCurrencyRate } = useCurrencyConverter();
   const [isCouponApplied, setIsCouponApplied] = useState(false);
   const [couponDiscount, setCouponDiscount] = useState(0);

@@ -17,14 +17,17 @@ export const ProductCard = ({ product }) => {
 
   return (
     <article className={`product-card`}>
-      <div className={`product-card__img-container`}>
-        <img
-          src={image}
-          alt={imageAltText(title, author)}
-          className={`product-card__img responsive-img`}
-          loading="lazy"
-        />
-      </div>
+      <Link className={`text-link`} to={`product/${product._id}`}>
+        <div className={`product-card__img-container`}>
+          <img
+            src={image}
+            alt={imageAltText(title, author)}
+            className={`product-card__img responsive-img`}
+            loading="lazy"
+            title={title}
+          />
+        </div>
+      </Link>
       <div className="product-card__details">
         <div className="add-to-wishlist_container">
           <div className="flex justify-between items-center rating-container">
@@ -38,6 +41,11 @@ export const ProductCard = ({ product }) => {
           <div
             className="add-to-wishlist"
             onClick={() => onAddToWishlistClicked(product)}
+            title={
+              inWishlist(product._id)
+                ? `Remove from Wishlist`
+                : `Add to Wishlist`
+            }
           >
             <span
               className={`add-to-wishlist-icon ${
@@ -49,13 +57,16 @@ export const ProductCard = ({ product }) => {
           </div>
         </div>
         <Link className={`text-link`} to={`product/${product._id}`}>
-          <h1 className={`product-title`}>{title}</h1>
+          <h1 className={`product-title`} title={title}>
+            {title}
+          </h1>
         </Link>
         <p className={`product-creator`}>{authorName(author)}</p>
         <Price mrp={mrp} offerPercentage={offerPercentage} />
         <button
           className="btn-add-to-cart"
           onClick={() => onAddToCartClicked(product)}
+          title={translate("Add to Cart", language)}
         >
           {translate("Add to Cart", language)}
         </button>

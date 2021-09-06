@@ -1,13 +1,12 @@
-import { Navbar, Price, ReviewList } from "../";
+import { Navbar, Price } from "../";
 import { imageAltText, authorName } from "../";
 import { StarSvg } from "../../assets";
 import { useECommerce, useGetProduct } from "../../customHooks";
 import "../Cart/cart-styles.css";
 import "./product-detail-styles.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
-import { wishlistHandler, cartHandler } from "../../functions";
 import { useAuth } from "../../contexts";
 
 export const ProductDetail = () => {

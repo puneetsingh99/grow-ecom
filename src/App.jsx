@@ -1,7 +1,6 @@
 import "./styles.css";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
 import {
   ProductListingPage,
   Wishlist,

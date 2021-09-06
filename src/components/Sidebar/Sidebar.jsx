@@ -3,7 +3,7 @@ import { SidebarList } from "./SidebarList";
 import {
   subjects,
   levelsOfDifficulty,
-  productType
+  productType,
 } from "../../data/categoryList";
 import { useECommerce, useLocalization } from "../../customHooks";
 import { translate } from "../../functions";

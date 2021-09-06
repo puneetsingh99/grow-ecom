@@ -30,6 +30,5 @@ export const apiMoveToCart = (userId, productId) =>
   `${API_ROOT}/users/${userId}/movetocart/${productId}`;
 
 export const apiUpdateQty = (userId, productId, qty) => {
-  console.log(`${API_ROOT}/${userId}/cart/${productId}/${qty}`);
   return `${API_ROOT}/users/${userId}/cart/${productId}/${String(qty)}`;
 };
