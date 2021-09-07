@@ -77,6 +77,13 @@ export const WishlistProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (!isUserLoggedIn) {
+      wishlistDispatch({
+        type: "SET_WISHLIST",
+        payload: [],
+      });
+    }
+
     if (userId) {
       (async function () {
         try {
