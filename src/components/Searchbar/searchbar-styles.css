@@ -75,3 +75,59 @@
   border: none;
   height: 100%;
 }
+.searchbar-container {
+  position: relative;
+}
+
+.search-results {
+  position: absolute;
+  height: 225px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.search-results li {
+  list-style: none;
+}
+
+.search-results img {
+  height: 100px;
+}
+
+.search-result-img {
+  width: max-content;
+}
+
+.search-result-card {
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 1.25rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.search-result-card:hover {
+  background-color: var(--light-gray);
+}
+
+.search-result__title {
+  max-width: 100%;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.full-width-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  font-size: 1.25rem;
+  color: var(--light-gray);
+  height: 100%;
+}

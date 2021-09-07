@@ -34,3 +34,5 @@ export const apiMoveToCart = (userId, productId) =>
 export const apiUpdateQty = (userId, productId, qty) => {
   return `${API_ROOT}/users/${userId}/cart/${productId}/${String(qty)}`;
 };
+
+export const apiSearch = () => `${API_ROOT}/products/search`;

@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { useAuth } from "../AuthContext";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ROUTE_LOGIN } from "../../routes";
 import { cartReducer } from "./cartReducer";
 import { getCart } from "./getCart";
@@ -24,7 +24,9 @@ const initialState = {
 
 export const CartProvider = ({ children }) => {
   const { isUserLoggedIn, userId } = useAuth();
-  const location = useLocation();
+  const { state } = useLocation();
+  console.log(state);
+  const navigate = useNavigate();
 
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
 
@@ -37,7 +39,7 @@ export const CartProvider = ({ children }) => {
 
   const onAddToCartClicked = async (product) => {
     if (!isUserLoggedIn) {
-      return <Navigate state={{ from: location.pathname }} to={ROUTE_LOGIN} />;
+      return navigate(ROUTE_LOGIN, { state: { from: "/products" } });
     }
 
     inCart(product._id)
