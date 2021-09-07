@@ -1,10 +1,10 @@
+import React from "react";
 import "./loader.css";
-import loadingAnimationSvg from "./loaderSvg.svg";
 
 export const Loader = () => {
   return (
-    <div className="loader-animation">
-      <img src={loadingAnimationSvg} alt="loader" />
+    <div className="h-full flex justify-center items-start p-8">
+      <div className="basic"></div>
     </div>
   );
 };
