@@ -34,10 +34,11 @@ export const WishlistProvider = ({ children }) => {
     return productExists;
   };
 
-  const onAddToWishlistClicked = async (product) => {
+  const onAddToWishlistClicked = async (product, from = "/products") => {
     if (!isUserLoggedIn) {
-      return navigate(ROUTE_LOGIN);
+      return navigate(ROUTE_LOGIN, { state: { from } });
     }
+
     if (inWishlist(product._id)) {
       return removeFromWishlist(product._id);
     }

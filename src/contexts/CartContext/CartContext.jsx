@@ -25,7 +25,6 @@ const initialState = {
 export const CartProvider = ({ children }) => {
   const { isUserLoggedIn, userId } = useAuth();
   const { state } = useLocation();
-  console.log(state);
   const navigate = useNavigate();
 
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
@@ -37,9 +36,9 @@ export const CartProvider = ({ children }) => {
     return productExists;
   };
 
-  const onAddToCartClicked = async (product) => {
+  const onAddToCartClicked = async (product, from = "/products") => {
     if (!isUserLoggedIn) {
-      return navigate(ROUTE_LOGIN, { state: { from: "/products" } });
+      return navigate(ROUTE_LOGIN, { state: { from } });
     }
 
     inCart(product._id)

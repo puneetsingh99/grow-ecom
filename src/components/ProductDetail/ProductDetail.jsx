@@ -6,7 +6,7 @@ import { StarSvg } from "../../assets";
 import "../Cart/cart-styles.css";
 import "./product-detail-styles.css";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
 import { useAuth } from "../../contexts";
 import { useCart } from "../../contexts/CartContext/CartContext";
@@ -15,6 +15,7 @@ import { useWishlist } from "../../contexts/WishlistContext/WishlistContext";
 export const ProductDetail = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
+  const { pathname } = useLocation();
 
   useEffect(() => {
     getProduct(productId, setProduct);
@@ -69,14 +70,14 @@ export const ProductDetail = () => {
                 <div className={`mb-8 product__details-btn-container`}>
                   <button
                     className="btn-add-to-cart product__details-btn-add-to-wishlist"
-                    onClick={() => onAddToWishlistClicked(product)}
+                    onClick={() => onAddToWishlistClicked(product, pathname)}
                   >
                     Add to Wishlist
                   </button>
 
                   <button
                     className="btn-add-to-cart product__details-btn-add-to-cart"
-                    onClick={() => onAddToCartClicked(product)}
+                    onClick={() => onAddToCartClicked(product, pathname)}
                   >
                     Add to Cart
                   </button>

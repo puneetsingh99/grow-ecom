@@ -4,6 +4,7 @@ import { TagSvg } from "../../assets";
 import { roundToTwoDigits } from "../../functions";
 import { useCart } from "../../contexts/CartContext/CartContext";
 import { useCurrencyConverter } from "../../customHooks";
+import { displayRazorpay } from "./displayRazorpay";
 
 export const PlaceOrder = (props) => {
   const {
@@ -86,7 +87,10 @@ export const PlaceOrder = (props) => {
           </span>
         </div>
         <div className={`coupon-apply`}>
-          <button className="btn btn-add-to-cart btn-lg">{`Place Order`}</button>
+          <button
+            className="btn btn-add-to-cart btn-lg"
+            onClick={() => displayRazorpay(orderTotal, "INR")}
+          >{`Place Order`}</button>
         </div>
       </div>
     </div>

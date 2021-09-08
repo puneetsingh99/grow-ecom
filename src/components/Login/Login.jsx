@@ -9,15 +9,16 @@ import { ROUTE_SIGNUP } from "../../routes";
 export const Login = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  console.log(state);
   const { isUserLoggedIn } = useAuth();
 
   const login = useLogin();
 
   const focusInput = useRef(null);
 
-  isUserLoggedIn && navigate(state?.from || "/");
-  focusInput.current && focusInput.current.focus();
+  useEffect(() => {
+    isUserLoggedIn && navigate(state?.from || "/");
+    focusInput.current && focusInput.current.focus();
+  }, [focusInput, isUserLoggedIn]);
 
   return (
     <>
