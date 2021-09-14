@@ -5,7 +5,7 @@ const addToCart = (state, product) => {
   );
 
   if (!present) {
-    const updatedCart = [...state.cart, product];
+    const updatedCart = [product, ...state.cart];
     return { ...state, cart: updatedCart };
   }
 
