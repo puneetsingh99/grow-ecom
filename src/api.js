@@ -1,8 +1,8 @@
 // export const API_ROOT = `http://localhost:5000`;
 
-export const API_ROOT = `https://radiant-depths-11487.herokuapp.com`;
+// export const API_ROOT = `https://radiant-depths-11487.herokuapp.com`;
 
-// export const API_ROOT = `https://ecom-be.puneetsingh2.repl.co`;
+export const API_ROOT = `https://ecom-be.puneetsingh2.repl.co`;
 
 export const API_ALL_PRODUCTS = `${API_ROOT}/products`;
 export const API_LOGIN = `${API_ROOT}/login`;
