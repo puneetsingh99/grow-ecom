@@ -37,6 +37,10 @@ html {
   overflow-x: hidden;
 }
 
+.App {
+  font-family: "Raleway", sans-serif;
+}
+
 .text-link {
   color: inherit;
   text-decoration: inherit;
