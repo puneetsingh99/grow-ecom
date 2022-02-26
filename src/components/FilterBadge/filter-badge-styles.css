@@ -1,0 +1,42 @@
+.filter {
+  color: var(--medium-light-gray);
+  border: solid 1px currentColor;
+  width: max-content;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: flex-start;
+}
+
+.filter:hover {
+  color: var(--medium-gray);
+}
+
+.filter__name {
+  color: var(--medium-gray);
+}
+
+.filter__remove {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.filter-badge-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: center;
+  flex-wrap: wrap;
+}
+
+.filter-badge-list li {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}

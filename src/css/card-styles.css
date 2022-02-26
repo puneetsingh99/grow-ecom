@@ -1,0 +1,172 @@
+/* Cards */
+
+/* e-commerce card */
+.card {
+  width: 250px;
+  transition: 0.3s ease;
+}
+.card:hover {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.card-text {
+  min-width: 300px;
+  max-width: 500px;
+  border-radius: 5px;
+}
+.card-text img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.model-name {
+  margin-bottom: 0.5rem;
+  color: var(--gray-500);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
+.brand-name,
+.card-text-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-text-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.w-250 {
+  width: 250px;
+}
+
+.card-text-body {
+  margin-bottom: 0.5rem;
+  color: var(--gray-600);
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.wishlist-icon {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.wishlist-icon:hover {
+  cursor: pointer;
+}
+.price {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.mrp {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  margin-right: 0.5rem;
+  text-decoration: line-through;
+}
+.offer {
+  color: var(--red-400);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  margin-right: 0.5rem;
+}
+
+.product-image {
+  position: relative;
+}
+.product-badge {
+  position: absolute;
+  left: 0px;
+  top: 25px;
+  background-color: var(--red-400);
+  font-size: 0.75rem;
+  color: var(--white);
+  padding: 0.25rem;
+}
+
+.product-dismiss {
+  position: absolute;
+  right: 0px;
+  top: 0.5rem;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+.product-dismiss:hover {
+  cursor: pointer;
+  background: var(--gray-300);
+}
+
+/* horizontal card */
+.card-text-horizontal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2rem;
+}
+.card-text-img img {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.card-text-content {
+  padding: 0rem 0.5rem;
+}
+
+.profile {
+  width: 5rem;
+  height: 5rem;
+}
+
+.profile-card__img {
+  min-width: 5rem;
+  height: 5rem;
+}
+/* card text overlay */
+/* transition is not working fix it.  */
+.card-text-overlay {
+  position: relative;
+}
+
+.card-text-overlay img {
+  border-radius: 5px;
+}
+
+.text-overlay {
+  position: absolute;
+  padding: 1rem;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  color: var(--white);
+  transition: 0.8s ease;
+  opacity: 0;
+}
+
+.card-text-overlay:hover .text-overlay {
+  opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+  .profile-card__img {
+    min-width: 2.5rem;
+    height: 2.5rem;
+  }
+}

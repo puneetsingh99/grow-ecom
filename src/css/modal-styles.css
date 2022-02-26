@@ -1,0 +1,28 @@
+#modal-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+#modal {
+  background-color: var(--white);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  width: 400px;
+  border-radius: 5px;
+  max-width: 100%;
+  text-align: center;
+}
+
+#modal.show-modal {
+  pointer-events: auto;
+  opacity: 1;
+}

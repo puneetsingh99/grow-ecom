@@ -1,0 +1,72 @@
+.location-list,
+.language-list {
+  position: absolute;
+  top: 45px;
+  right: 0px;
+  opacity: 0;
+  pointer-events: none;
+  background-color: var(--white);
+  border: solid 1px var(--light-gray);
+  transition: 0.3s ease;
+  font-size: 1rem;
+}
+
+.language-list li {
+  padding-left: 0px;
+}
+
+.language-list {
+  top: 60px;
+  right: 0px;
+}
+
+.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.country,
+.language {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: var(--medium-gray);
+  padding: 0.25rem 1rem;
+  min-width: max-content;
+}
+
+.country:hover {
+  background-color: var(--light-gray);
+}
+.language:hover {
+  background-color: var(--light-gray);
+}
+
+.country__flag {
+  font-size: 1.25rem;
+}
+
+.highlight {
+  background-color: var(--light-gray);
+}
+
+.country__name-mobile,
+.language__name-mobile {
+  font-weight: normal;
+}
+.language-mobile,
+.country-mobile {
+  padding: 0.5rem;
+}
+
+.language-list-mobile,
+.location-list-mobile {
+  display: none;
+  padding-left: 3rem;
+}
+
+.show-localization-mobile {
+  display: block;
+}

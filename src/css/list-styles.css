@@ -1,0 +1,4 @@
+.stacked-list li {
+  padding: 1rem 0rem;
+  border-bottom: solid 1px var(--gray-500);
+}

@@ -1,0 +1,133 @@
+.searchbar {
+  color: var(--medium-gray);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.search-icon,
+.search-icon-mobile {
+  font-size: 1.5rem;
+  padding: 0.55rem 1rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: var(--medium-gray);
+  border: solid 1px var(--light-gray);
+  border-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: none;
+  cursor: pointer;
+}
+.search-icon-mobile {
+  border-left: none;
+  border-right: solid 1px var(--light-gray);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border: none;
+  height: 100%;
+  background-color: var(--white);
+}
+
+.searchbar__input,
+.searchbar__input-mobile {
+  border: solid 1px var(--light-gray);
+  border-left: none;
+  padding: 0.73rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  width: 100%;
+  color: var(--medium-gray);
+}
+.searchbar__input-mobile {
+  border: solid 1px var(--light-gray);
+  border-radius: 0px;
+  border-right: none;
+  padding-bottom: 0.74rem;
+  border: none;
+  height: 100%;
+}
+
+.searchbar__input:focus {
+  outline: transparent;
+  box-shadow: 0px 0px 0px 2px var(--blue-200);
+  background-color: var(--white);
+}
+
+.searchbar__input-mobile:focus {
+  outline: none;
+}
+
+.searchbar-mobile {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  z-index: 10;
+}
+
+.backarrow-icon {
+  border: none;
+  height: 100%;
+}
+.searchbar-container {
+  position: relative;
+}
+
+.search-results {
+  position: absolute;
+  height: 225px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.search-results li {
+  list-style: none;
+}
+
+.search-results img {
+  height: 100px;
+}
+
+.search-result-img {
+  width: max-content;
+}
+
+.search-result-card {
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 1.25rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.search-result-card:hover {
+  background-color: var(--light-gray);
+}
+
+.search-result__title {
+  max-width: 100%;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.full-width-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  font-size: 1.25rem;
+  color: var(--light-gray);
+  height: 100%;
+}

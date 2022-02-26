@@ -1,0 +1,25 @@
+/* Badge */
+
+.badge-icon {
+  position: relative;
+  width: max-content;
+  color: var(--gray-600);
+  font-size: 0.8rem;
+}
+
+.badge-num {
+  position: absolute;
+  min-height: 25px;
+  min-width: 25px;
+  border-radius: 50%;
+  padding: 0.25rem;
+  color: var(--white);
+  background-color: var(--red-400);
+  border: solid 2px var(--white);
+  bottom: 60%;
+  right: -12px;
+  display: flex;
+  font-size: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}

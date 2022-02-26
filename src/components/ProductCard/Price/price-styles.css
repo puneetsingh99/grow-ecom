@@ -1,0 +1,10 @@
+.product-price {
+  color: var(--dark-gray);
+  font-weight: 500;
+}
+.product-price-og {
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+  color: var(--medium-light-gray);
+  font-weight: normal;
+}

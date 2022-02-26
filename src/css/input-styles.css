@@ -1,0 +1,26 @@
+/* Input */
+
+.input-text {
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  border: solid 1px var(--gray-400);
+}
+.input-text:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 3px var(--blue-200);
+}
+
+.input-text-yellow:focus {
+  box-shadow: 0px 0px 0px 3px var(--yellow-200);
+}
+.input-text-green:focus {
+  box-shadow: 0px 0px 0px 3px var(--green-200);
+}
+.input-text-purple:focus {
+  box-shadow: 0px 0px 0px 3px var(--purple-200);
+}
+.input-text-red:focus {
+  box-shadow: 0px 0px 0px 3px var(--red-200);
+}
